@@ -1,150 +1,302 @@
-## Makefile.am for Onigmo
-encdir    = $(top_srcdir)/enc
-sampledir = $(top_srcdir)/sample
-libname = libonigmo.la
+# Makefile.am for libevent
+# Copyright 2000-2007 Niels Provos
+# Copyright 2007-2012 Niels Provos and Nick Mathewson
+#
+# See LICENSE for copying information.
 
-PYTHON = @python_prog@
+# 'foreign' means that we're not enforcing GNU package rules strictly.
+# '1.9' means that we need automake 1.9 or later (and we do).
+AUTOMAKE_OPTIONS = foreign 1.9 subdir-objects
 
 ACLOCAL_AMFLAGS = -I m4
-AM_CFLAGS = -Wall
-AM_CPPFLAGS = -I$(top_srcdir) -I$(includedir) -I$(encdir)/unicode
 
-SUBDIRS = . sample
+# This is the "Release" of the Libevent ABI.  It takes precedence over
+# the VERSION_INFO, so that two versions of Libevent with the same
+# "Release" are never binary-compatible.
+#
+# This number incremented once for the 2.0 release candidate, and
+# will increment for each series until we revise our interfaces enough
+# that we can seriously expect ABI compatibility between series.
+#
+RELEASE = -release 2.1
 
-include_HEADERS = onigmo.h onigmognu.h onigmoposix.h
-lib_LTLIBRARIES = $(libname)
+# This is the version info for the libevent binary API.  It has three
+# numbers:
+#   Current  -- the number of the binary API that we're implementing
+#   Revision -- which iteration of the implementation of the binary
+#               API are we supplying?
+#   Age      -- How many previous binary API versions do we also
+#               support?
+#
+# To increment a VERSION_INFO (current:revision:age):
+#    If the ABI didn't change:
+#        Return (current:revision+1:age)
+#    If the ABI changed, but it's backward-compatible:
+#        Return (current+1:0:age+1)
+#    If the ABI changed and it isn't backward-compatible:
+#        Return (current+1:0:0)
+#
+# Once an RC is out, DO NOT MAKE ANY ABI-BREAKING CHANGES IN THAT SERIES
+# UNLESS YOU REALLY REALLY HAVE TO.
+VERSION_INFO = 4:0:0
 
-libonigmo_la_SOURCES = regint.h regparse.h regenc.h st.h \
-	regerror.c regparse.c regext.c regcomp.c regexec.c reggnu.c \
-	regenc.c regsyntax.c regtrav.c regversion.c st.c \
-	regposix.c regposerr.c \
-	enc/unicode.c enc/ascii.c enc/utf_8.c \
-	enc/utf_16be.c enc/utf_16le.c \
-	enc/utf_32be.c enc/utf_32le.c \
-	enc/unicode/casefold.h enc/unicode/name2ctype.h \
-	enc/euc_jp.c enc/shift_jis.c enc/shift_jis.h \
-	enc/windows_31j.c \
-	enc/jis/props.h enc/jis/props.kwd \
-	enc/iso_8859.h enc/iso_8859_1.c \
-	enc/iso_8859_2.c  enc/iso_8859_3.c \
-	enc/iso_8859_4.c  enc/iso_8859_5.c \
-	enc/iso_8859_6.c  enc/iso_8859_7.c \
-	enc/iso_8859_8.c  enc/iso_8859_9.c \
-	enc/iso_8859_10.c enc/iso_8859_11.c \
-	enc/iso_8859_13.c enc/iso_8859_14.c \
-	enc/iso_8859_15.c enc/iso_8859_16.c \
-	enc/euc_tw.c enc/euc_kr.c enc/big5.c \
-	enc/gb18030.c enc/koi8_r.c enc/koi8_u.c \
-	enc/windows_1250.c enc/windows_1251.c \
-	enc/windows_1252.c enc/windows_1253.c \
-	enc/windows_1254.c enc/windows_1257.c
+# History:          RELEASE    VERSION_INFO
+#  2.0.1-alpha --     2.0        1:0:0
+#  2.0.2-alpha --                2:0:0
+#  2.0.3-alpha --                2:0:0  (should have incremented; didn't.)
+#  2.0.4-alpha --                3:0:0
+#  2.0.5-beta  --                4:0:0
+#  2.0.6-rc    --     2.0        2:0:0
+#  2.0.7-rc    --     2.0        3:0:1
+#  2.0.8-rc    --     2.0        4:0:2
+#  2.0.9-rc    --     2.0        5:0:0 (ABI changed slightly)
+#  2.0.10-stable--    2.0        5:1:0 (No ABI change)
+#  2.0.11-stable--    2.0        6:0:1 (ABI changed, backward-compatible)
+#  2.0.12-stable--    2.0        6:1:1 (No ABI change)
+#  2.0.13-stable--    2.0        6:2:1 (No ABI change)
+#  2.0.14-stable--    2.0        6:3:1 (No ABI change)
+#  2.0.15-stable--    2.0        6:3:1 (Forgot to update :( )
+#  2.0.16-stable--    2.0        6:4:1 (No ABI change)
+#  2.0.17-stable--    2.0        6:5:1 (No ABI change)
+#  2.0.18-stable--    2.0        6:6:1 (No ABI change)
+#  2.0.19-stable--    2.0        6:7:1 (No ABI change)
+#  2.0.20-stable--    2.0        6:8:1 (No ABI change)
+#  2.0.21-stable--    2.0        6:9:1 (No ABI change)
+#
+# For Libevent 2.1:
+#  2.1.1-alpha --     2.1        1:0:0
+#  2.1.2-alpha --     2.1        1:0:0 (should have been 2:0:1)
+#  2.1.3-alpha --     2.1        3:0:0 (ABI changed slightly)
+#  2.1.4-alpha --     2.1        4:0:0 (ABI changed slightly)
 
-libonigmo_la_LDFLAGS = -version-info $(LTVERSION) -no-undefined
+# ABI version history for this package effectively restarts every time
+# we change RELEASE.  Version 1.4.x had RELEASE of 1.4.
+#
+# Ideally, we would not be using RELEASE at all; instead we could just
+# use the VERSION_INFO field to label our backward-incompatible ABI
+# changes, and those would be few and far between.  Unfortunately,
+# Libevent still exposes far too many volatile structures in its
+# headers, so we pretty much have to assume that most development
+# series will break ABI compatibility.  For now, it's simplest just to
+# keep incrementing the RELEASE between series and resetting VERSION_INFO.
+#
+# Eventually, when we get to the point where the structures in the
+# headers are all non-changing (or not there at all!), we can shift to
+# a more normal worldview where backward-incompatible ABI changes are
+# nice and rare.  For the next couple of years, though, 'struct event'
+# is user-visible, and so we can pretty much guarantee that release
+# series won't be binary-compatible.
 
-EXTRA_DIST = .gitignore onigmo.pc.in HISTORY README.ja README.md \
-	doc/API doc/API.ja doc/RE doc/RE.ja doc/FAQ doc/FAQ.ja \
-	doc/UnicodeProps.txt \
-	tool/.gitignore tool/Makefile tool/case-folding.rb \
-	tool/convert-jis-props.sh \
-	tool/enc-unicode.rb tool/download-ucd.sh tool/update-doc.py \
-	win32/Makefile win32/Makefile.mingw win32/config.h win32/testc.c \
-	win32/makedef.py win32/onigmo.rc \
-	$(encdir)/mktable.c \
-	test.rb testconv.rb testconvu.rb \
-	onigmo.py testpy.py .editorconfig
+if INSTALL_LIBEVENT
+dist_bin_SCRIPTS = event_rpcgen.py
+endif
 
-bin_SCRIPTS = onigmo-config
+pkgconfigdir=$(libdir)/pkgconfig
+LIBEVENT_PKGCONFIG=libevent.pc
 
-onigmo-config: onigmo-config.in
+# These sources are conditionally added by configure.ac or conditionally
+# included from other files.
+PLATFORM_DEPENDENT_SRC = \
+	arc4random.c \
+	epoll_sub.c
 
-do_subst = sed                                          \
-      -e 's,[@]datadir[@],$(datadir),g'                 \
-      -e 's,[@]datarootdir[@],$(datarootdir),g'         \
-      -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
-      -e 's,[@]prefix[@],$(prefix),g'                   \
-      -e 's,[@]exec_prefix[@],$(exec_prefix),g'         \
-      -e 's,[@]libdir[@],$(libdir),g'                   \
-      -e 's,[@]includedir[@],$(includedir),g'
+EXTRA_DIST = \
+	ChangeLog-1.4 \
+	ChangeLog-2.0 \
+	Doxyfile \
+	LICENSE \
+	Makefile.nmake test/Makefile.nmake \
+	autogen.sh \
+	event_rpcgen.py \
+	libevent.pc.in \
+	make-event-config.sed \
+	whatsnew-2.0.txt \
+	whatsnew-2.1.txt \
+	$(PLATFORM_DEPENDENT_SRC)
 
-onigmo.pc: $(srcdir)/onigmo.pc.in Makefile
-	$(do_subst) < $(srcdir)/onigmo.pc.in > $(@)
+LIBEVENT_LIBS_LA = libevent.la libevent_core.la libevent_extra.la
+if PTHREADS
+LIBEVENT_LIBS_LA += libevent_pthreads.la
+LIBEVENT_PKGCONFIG += libevent_pthreads.pc
+endif
+if OPENSSL
+LIBEVENT_LIBS_LA += libevent_openssl.la
+LIBEVENT_PKGCONFIG += libevent_openssl.pc
+endif
 
-pkgconfigdir   = $(libdir)/pkgconfig
-pkgconfig_DATA = onigmo.pc
-CLEANFILES = onigmo.pc
+if INSTALL_LIBEVENT
+lib_LTLIBRARIES = $(LIBEVENT_LIBS_LA)
+pkgconfig_DATA = $(LIBEVENT_PKGCONFIG)
+else
+noinst_LTLIBRARIES =  $(LIBEVENT_LIBS_LA)
+endif
 
-# character-types-table source generator
-mktable: $(encdir)/mktable.c $(srcdir)/regenc.h
-	$(CC) -I$(top_srcdir) -o mktable $(encdir)/mktable.c
+EXTRA_SOURCE=
+noinst_HEADERS=
+noinst_PROGRAMS=
+EXTRA_PROGRAMS=
+CLEANFILES=
+DISTCLEANFILES=
+BUILT_SOURCES =
+include include/include.am
+include sample/include.am
+include test/include.am
 
+if BUILD_WIN32
 
-# TEST
-TESTS = testc testp testcu
+SYS_LIBS = -lws2_32 -lshell32 -ladvapi32
+SYS_SRC = win32select.c evthread_win32.c buffer_iocp.c event_iocp.c \
+	bufferevent_async.c
+SYS_INCLUDES = -IWIN32-Code -IWIN32-Code/nmake
 
-check_PROGRAMS = testc testp testcu \
-	test_enc_utf8
+else
 
-test: atest pytest
-	$(MAKE) -C sample test
+SYS_LIBS =
+SYS_SRC =
+SYS_INCLUDES =
 
-atest: testc$(EXEEXT) testp$(EXEEXT) testcu$(EXEEXT) \
-    test_enc_utf8$(EXEEXT)
-	@echo "[Onigmo API, ASCII/EUC-JP check]"
-	@$(top_builddir)/testc  | grep RESULT
-	@echo "[POSIX API, ASCII/EUC-JP check]"
-	@$(top_builddir)/testp  | grep RESULT
-	@echo "[Onigmo API, UTF-16 check]"
-	@$(top_builddir)/testcu | grep RESULT
-	@echo "[UTF-8 encoding check]"
-	@$(top_builddir)/test_enc_utf8 | grep RESULT
+endif
 
-testc_SOURCES = testc.c
-testc_LDADD = libonigmo.la
+if STRLCPY_IMPL
+SYS_SRC += strlcpy.c
+endif
+if SELECT_BACKEND
+SYS_SRC += select.c
+endif
+if POLL_BACKEND
+SYS_SRC += poll.c
+endif
+if DEVPOLL_BACKEND
+SYS_SRC += devpoll.c
+endif
+if KQUEUE_BACKEND
+SYS_SRC += kqueue.c
+endif
+if EPOLL_BACKEND
+SYS_SRC += epoll.c
+endif
+if EVPORT_BACKEND
+SYS_SRC += evport.c
+endif
+if SIGNAL_SUPPORT
+SYS_SRC += signal.c
+endif
 
-testp_SOURCES = testc.c
-testp_LDADD = libonigmo.la
-testp_CFLAGS = -DPOSIX_TEST
+BUILT_SOURCES += include/event2/event-config.h
 
-testcu_SOURCES = testu.c
-testcu_LDADD = libonigmo.la
+include/event2/event-config.h: config.h make-event-config.sed
+	$(AM_V_GEN)test -d include/event2 || $(MKDIR_P) include/event2
+	$(AM_V_at)$(SED) -f $(srcdir)/make-event-config.sed < config.h > $@T
+	$(AM_V_at)mv -f $@T $@
 
-test_enc_utf8_SOURCES = test_enc_utf8.c
-test_enc_utf8_LDADD = libonigmo.la
+CORE_SRC =					\
+	buffer.c				\
+	bufferevent.c				\
+	bufferevent_filter.c			\
+	bufferevent_pair.c			\
+	bufferevent_ratelim.c			\
+	bufferevent_sock.c			\
+	event.c					\
+	evmap.c					\
+	evthread.c				\
+	evutil.c				\
+	evutil_rand.c				\
+	evutil_time.c				\
+	listener.c				\
+	log.c					\
+	$(SYS_SRC)
 
-#$(srcdir)/testc.c: $(srcdir)/test.rb $(srcdir)/testconv.rb
-$(srcdir)/testc.c:
-	ruby -Ke $(srcdir)/testconv.rb < $(srcdir)/test.rb > $@
+EXTRAS_SRC =					\
+	evdns.c					\
+	event_tagging.c				\
+	evrpc.c					\
+	http.c
 
-#$(srcdir)/testu.c: $(srcdir)/test.rb $(srcdir)/testconvu.rb
-$(srcdir)/testu.c:
-	ruby -Ke $(srcdir)/testconvu.rb $(srcdir)/test.rb > $@
+if BUILD_WITH_NO_UNDEFINED
+NO_UNDEFINED = -no-undefined
+MAYBE_CORE = libevent_core.la
+else
+NO_UNDEFINED =
+MAYBE_CORE =
+endif
 
-#$(srcdir)/win32/testc.c: $(srcdir)/test.rb $(srcdir)/testconv.rb
-$(srcdir)/win32/testc.c:
-	ruby -Ke $(srcdir)/testconv.rb -win < $(srcdir)/test.rb | iconv -f euc-jp -t cp932 | sed -e "s/$$/\r/" > $@
+GENERIC_LDFLAGS = -version-info $(VERSION_INFO) $(RELEASE) $(NO_UNDEFINED)
 
-# Python TEST
-pytest:
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py EUC-JP
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py SJIS
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py UTF-8
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py UTF-16LE
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py UTF-16BE
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py UTF-32LE
-	LD_LIBRARY_PATH=.libs $(PYTHON) $(srcdir)/testpy.py UTF-32BE
+libevent_la_SOURCES = $(CORE_SRC) $(EXTRAS_SRC)
+libevent_la_LIBADD = @LTLIBOBJS@ $(SYS_LIBS)
+libevent_la_LDFLAGS = $(GENERIC_LDFLAGS)
 
+libevent_core_la_SOURCES = $(CORE_SRC)
+libevent_core_la_LIBADD = @LTLIBOBJS@ $(SYS_LIBS)
+libevent_core_la_LDFLAGS = $(GENERIC_LDFLAGS)
 
-# lcov
+if PTHREADS
+libevent_pthreads_la_SOURCES = evthread_pthread.c
+libevent_pthreads_la_LIBADD = $(MAYBE_CORE)
+libevent_pthreads_la_LDFLAGS = $(GENERIC_LDFLAGS)
+endif
 
-# Collect coverage data and write to coverage.info, then create HTML output
-# in the coverage directory.
-lcov:
-	if [ ! -f $(builddir)/enc/jis/props.kwd ]; then mkdir -p $(builddir)/enc/jis; cp -p $(srcdir)/enc/jis/props.kwd $(builddir)/enc/jis/props.kwd; fi
-	lcov -c -d .libs -d enc/.libs -o coverage.info
-	genhtml -o coverage coverage.info
+libevent_extra_la_SOURCES = $(EXTRAS_SRC)
+libevent_extra_la_LIBADD = $(MAYBE_CORE) $(SYS_LIBS)
+libevent_extra_la_LDFLAGS = $(GENERIC_LDFLAGS)
 
-# Clear coverage data.
-lcov-clear:
-	lcov -d . -z
+if OPENSSL
+libevent_openssl_la_SOURCES = bufferevent_openssl.c
+libevent_openssl_la_LIBADD = $(MAYBE_CORE) $(OPENSSL_LIBS)
+libevent_openssl_la_LDFLAGS = $(GENERIC_LDFLAGS)
+libevent_openssl_la_CPPFLAGS = $(AM_CPPFLAGS) $(OPENSSL_INCS)
+endif
 
-## END OF FILE
+noinst_HEADERS +=				\
+	WIN32-Code/nmake/evconfig-private.h	\
+	WIN32-Code/nmake/event2/event-config.h	\
+	WIN32-Code/tree.h			\
+	bufferevent-internal.h			\
+	changelist-internal.h			\
+	compat/sys/queue.h			\
+	defer-internal.h			\
+	epolltable-internal.h			\
+	evbuffer-internal.h			\
+	evconfig-private.h			\
+	event-internal.h			\
+	evmap-internal.h			\
+	evrpc-internal.h			\
+	evsignal-internal.h			\
+	evthread-internal.h			\
+	ht-internal.h				\
+	http-internal.h				\
+	iocp-internal.h				\
+	ipv6-internal.h				\
+	kqueue-internal.h			\
+	log-internal.h				\
+	minheap-internal.h			\
+	mm-internal.h				\
+	ratelim-internal.h			\
+	ratelim-internal.h			\
+	strlcpy-internal.h			\
+	time-internal.h				\
+	util-internal.h
+
+EVENT1_HDRS = \
+	include/evdns.h \
+	include/event.h \
+	include/evhttp.h \
+	include/evrpc.h \
+	include/evutil.h
+
+if INSTALL_LIBEVENT
+include_HEADERS = $(EVENT1_HDRS)
+else
+noinst_HEADERS += $(EVENT1_HDRS)
+endif
+
+AM_CPPFLAGS = -I$(srcdir)/compat -I$(srcdir)/include -I./include $(SYS_INCLUDES)
+
+verify: check
+
+doxygen: FORCE
+	doxygen $(srcdir)/Doxyfile
+FORCE:
+
+DISTCLEANFILES += *~ libevent.pc ./include/event2/event-config.h
+

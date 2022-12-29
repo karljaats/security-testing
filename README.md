@@ -1,221 +1,318 @@
-[![Build Status](https://travis-ci.org/k-takata/Onigmo.svg?branch=master)](https://travis-ci.org/k-takata/Onigmo)
-[![Build status](https://ci.appveyor.com/api/projects/status/kndb924qaw1hq72i/branch/master?svg=true)](https://ci.appveyor.com/project/k-takata/onigmo/branch/master)
-[![Coverage Status](https://coveralls.io/repos/k-takata/Onigmo/badge.svg?branch=master&service=github)](https://coveralls.io/github/k-takata/Onigmo?branch=master)
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/2778/badge.svg)](https://scan.coverity.com/projects/k-takata-onigmo)
-[![Code Quality: Cpp](https://img.shields.io/lgtm/grade/cpp/g/k-takata/Onigmo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/k-takata/Onigmo/context:cpp)
-[![Total Alerts](https://img.shields.io/lgtm/alerts/g/k-takata/Onigmo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/k-takata/Onigmo/alerts)
+# 0. BUILDING AND INSTALLATION (Briefly)
 
-Onigmo (Oniguruma-mod)
-======================
+## Autoconf
 
-https://github.com/k-takata/Onigmo
+     $ ./configure
+     $ make
+     $ make verify   # (optional)
+     $ sudo make install
 
-Onigmo is a regular expressions library forked from [Oniguruma](https://github.com/kkos/oniguruma).
-It focuses to support new expressions like `\K`, `\R`, `(?(cond)yes|no)`
-and etc. which are supported in Perl 5.10+.
+## CMake (Windows)
 
-Since Onigmo is used as the default regexp library of Ruby 2.0 or later,
-many patches are backported from Ruby 2.x.
-
-See also the Wiki page:
-https://github.com/k-takata/Onigmo/wiki
+Install CMake: <http://www.cmake.org>
 
 
-License
--------
+     $ md build && cd build
+     $ cmake -G "Visual Studio 10" ..   # Or whatever generator you want to use cmake --help for a list.
+     $ start libevent.sln
 
-  BSD license.
+## CMake (Unix)
 
-
-Install
--------
-
-### Case 1: Unix and Cygwin platform
-
-   1. `./autogen.sh`  (If `configure` doesn't exist.)
-   2. `./configure`
-   3. `make`
-   4. `make install`
-
-   * test
-
-        make test
-
-   * uninstall
-
-        make uninstall
-
-   * configuration check
-
-        onigmo-config --cflags
-        onigmo-config --libs
-        onigmo-config --prefix
-        onigmo-config --exec-prefix
+     $ mkdir build && cd build
+     $ cmake ..     # Default to Unix Makefiles.
+     $ make
+     $ make verify  # (optional)
 
 
-### Case 2: Windows 64/32bit platform (Visual C++)
+# 1. BUILDING AND INSTALLATION (In Depth)
 
-   Execute `build_nmake.cmd`.
-   `build_x64` or `build_x86` will be used as a working/output directory.
+## Autoconf
 
-      onigmo_s.lib:  static link library
-      onigmo.lib:    import library for dynamic link
-      onigmo.dll:    dynamic link library
+To build libevent, type
 
-   * test (ASCII/Shift_JIS/EUC-JP/Unicode)
-
-      Execute `build_nmake.cmd test`.
-      Python (with the same bitness of Onigmo) is needed to run the tests.
+     $ ./configure && make
 
 
-### Case 3: Windows 64/32bit platform (MinGW)
+ (If you got libevent from the git repository, you will
+  first need to run the included "autogen.sh" script in order to
+  generate the configure script.)
 
-   Execute `mingw32-make -f win32/Makefile.mingw`.
-   `build_x86-64`, `build_i686` and etc. will be used as a working/output
-   directory.
+You can run the regression tests by running
 
-      libonigmo.a:     static link library
-      libonigmo.dll.a: import library for dynamic link
-      onigmo.dll:      dynamic link library
+     $ make verify
 
-   * test (ASCII/Shift_JIS/EUC-JP/Unicode)
+Install as root via
 
-      Execute `mingw32-make -f win32/Makefile.mingw test`.
-      Python (with the same bitness of Onigmo) is needed to run the tests.
+     $ make install
 
-   * If you use MinGW on MSYS2, you can also use `./configure` and `make`
-     like Unix. In this case, DLL name will have API version number. E.g.:
+Before reporting any problems, please run the regression tests.
 
-        libonigmo-6.dll
+To enable the low-level tracing build the library as:
 
+     $ CFLAGS=-DUSE_DEBUG ./configure [...]
 
-Regular Expressions
--------------------
+Standard configure flags should work.  In particular, see:
 
-  See [doc/RE](doc/RE) or [doc/RE.ja](doc/RE.ja) for Japanese.
+   --disable-shared          Only build static libraries
+   --prefix                  Install all files relative to this directory.
 
 
-Usage
------
+The configure script also supports the following flags:
 
-  Include onigmo.h in your program. (Onigmo API)
-  See [doc/API](doc/API) for Onigmo API.
+   --enable-gcc-warnings     Enable extra compiler checking with GCC.
+   --disable-malloc-replacement
+                             Don't let applications replace our memory
+                             management functions
+   --disable-openssl         Disable support for OpenSSL encryption.
+   --disable-thread-support  Don't support multithreaded environments.
 
-  If you want to disable `UChar` type (== `unsigned char`) definition
-  in onigmo.h, define `ONIG_ESCAPE_UCHAR_COLLISION` and then
-  include onigmo.h.
+## CMake (Windows)
 
-  If you want to disable `regex_t` type definition in onigmo.h,
-  define `ONIG_ESCAPE_REGEX_T_COLLISION` and then include onigmo.h.
+(Note that autoconf is currently the most mature and supported build
+enviroment for libevent; the cmake instructions here are new and
+experimental, though they _should_ be solid.  We hope that cmake will
+still be supported in future versions of Libevent, and will try to
+make sure that happens.)
 
-  Example of the compiling/linking command line in Unix or Cygwin,
-  (prefix == /usr/local case)
+First of all install <http://www.cmake.org>.
 
-    cc sample.c -L/usr/local/lib -lonigmo
+To build libevent using Microsoft Visual studio open the "Visual Studio Command prompt" and type:
 
+```
+$ cd <libevent source dir>
+$ mkdir build && cd build
+$ cmake -G "Visual Studio 10" ..   # Or whatever generator you want to use cmake --help for a list.
+$ start libevent.sln
+```
 
-  If you want to use static link library (onigmo_s.lib) in Win32,
-  add option `-DONIG_EXTERN=extern` to C compiler.
+In the above, the ".." refers to the dir containing the Libevent source code. 
+You can build multiple versions (with different compile time settings) from the same source tree
+by creating other build directories. 
 
+It is highly recommended to build "out of source" when using
+CMake instead of "in source" like the normal behaviour of autoconf for this reason.
 
+The "NMake Makefiles" CMake generator can be used to build entirely via the command line.
 
-Sample Programs
----------------
+To get a list of settings available for the project you can type:
 
-|File                  |Description                               |
-|:---------------------|:-----------------------------------------|
-|sample/simple.c       |example of the minimum (Onigmo API)       |
-|sample/names.c        |example of the named group callback.      |
-|sample/encode.c       |example of some encodings.                |
-|sample/listcap.c      |example of the capture history.           |
-|sample/posix.c        |POSIX API sample.                         |
-|sample/sql.c          |example of the variable meta characters.  |
+```
+$ cmake -LH ..
+```
 
+### GUI
 
-Test Programs
+CMake also provides a GUI that lets you specify the source directory and output (binary) directory
+that the build should be placed in.
 
-|File               |Description                            |
-|:------------------|:--------------------------------------|
-|sample/syntax.c    |Perl, Java and ASIS syntax test.       |
-|sample/crnl.c      |CRNL test                              |
+### OpenSSL support
 
+To build Libevent with OpenSSL support you will need to have OpenSSL binaries available when building,
+these can be found here: <http://www.openssl.org/related/binaries.html>
 
+# 2. USEFUL LINKS:
 
-Source Files
-------------
+For the latest released version of Libevent, see the official website at
+<http://libevent.org/> .
 
-|File                |Description                                            |
-|:-------------------|:------------------------------------------------------|
-|onigmo.h            |Onigmo API header file (public)                        |
-|onigmo-config.in    |configuration check program template                   |
-|onigmo.py           |Onigmo module for Python                               |
-|regenc.h            |character encodings framework header file              |
-|regint.h            |internal definitions                                   |
-|regparse.h          |internal definitions for regparse.c and regcomp.c      |
-|regcomp.c           |compiling and optimization functions                   |
-|regenc.c            |character encodings framework                          |
-|regerror.c          |error message function                                 |
-|regext.c            |extended API functions (deluxe version API)            |
-|regexec.c           |search and match functions                             |
-|regparse.c          |parsing functions.                                     |
-|regsyntax.c         |pattern syntax functions and built-in syntax definition|
-|regtrav.c           |capture history tree data traverse functions           |
-|regversion.c        |version info function                                  |
-|st.h                |hash table functions header file                       |
-|st.c                |hash table functions                                   |
-|onigmognu.h         |GNU regex API header file (public)                     |
-|reggnu.c            |GNU regex API functions                                |
-|onigmoposix.h       |POSIX API header file (public)                         |
-|regposerr.c         |POSIX error message function                           |
-|regposix.c          |POSIX API functions                                    |
-|enc/mktable.c       |character type table generator                         |
-|enc/ascii.c         |ASCII-8BIT encoding                                    |
-|enc/jis/            |JIS properties data                                    |
-|enc/euc_jp.c        |EUC-JP encoding                                        |
-|enc/euc_tw.c        |EUC-TW encoding                                        |
-|enc/euc_kr.c        |EUC-KR, EUC-CN encoding                                |
-|enc/shift_jis.c     |Shift_JIS encoding                                     |
-|enc/shift_jis.h     |Common part of Shift_JIS and Windows-31J encoding      |
-|enc/windows_31j.c   |Windows-31J (CP932) encoding                           |
-|enc/big5.c          |Big5      encoding                                     |
-|enc/gb18030.c       |GB18030   encoding                                     |
-|enc/gbk.c           |GBK       encoding                                     |
-|enc/koi8_r.c        |KOI8-R    encoding                                     |
-|enc/koi8_u.c        |KOI8-U    encoding                                     |
-|enc/iso_8859.h      |common definition of ISO-8859 encoding                 |
-|enc/iso_8859_1.c    |ISO-8859-1 (Latin-1)                                   |
-|enc/iso_8859_2.c    |ISO-8859-2 (Latin-2)                                   |
-|enc/iso_8859_3.c    |ISO-8859-3 (Latin-3)                                   |
-|enc/iso_8859_4.c    |ISO-8859-4 (Latin-4)                                   |
-|enc/iso_8859_5.c    |ISO-8859-5 (Cyrillic)                                  |
-|enc/iso_8859_6.c    |ISO-8859-6 (Arabic)                                    |
-|enc/iso_8859_7.c    |ISO-8859-7 (Greek)                                     |
-|enc/iso_8859_8.c    |ISO-8859-8 (Hebrew)                                    |
-|enc/iso_8859_9.c    |ISO-8859-9 (Latin-5 or Turkish)                        |
-|enc/iso_8859_10.c   |ISO-8859-10 (Latin-6 or Nordic)                        |
-|enc/iso_8859_11.c   |ISO-8859-11 (Thai)                                     |
-|enc/iso_8859_13.c   |ISO-8859-13 (Latin-7 or Baltic Rim)                    |
-|enc/iso_8859_14.c   |ISO-8859-14 (Latin-8 or Celtic)                        |
-|enc/iso_8859_15.c   |ISO-8859-15 (Latin-9 or West European with Euro)       |
-|enc/iso_8859_16.c   |ISO-8859-16 (Latin-10)                                 |
-|enc/utf_8.c         |UTF-8    encoding                                      |
-|enc/utf_16be.c      |UTF-16BE encoding                                      |
-|enc/utf_16le.c      |UTF-16LE encoding                                      |
-|enc/utf_32be.c      |UTF-32BE encoding                                      |
-|enc/utf_32le.c      |UTF-32LE encoding                                      |
-|enc/unicode.c       |common codes of Unicode encoding                       |
-|enc/unicode/        |Unicode case folding data and properties data          |
-|enc/windows_1250.c  |Windows-1250 (CP1250) encoding (Central/Eastern Europe)|
-|enc/windows_1251.c  |Windows-1251 (CP1251) encoding (Cyrillic)              |
-|enc/windows_1252.c  |Windows-1252 (CP1252) encoding (Latin)                 |
-|enc/windows_1253.c  |Windows-1253 (CP1253) encoding (Greek)                 |
-|enc/windows_1254.c  |Windows-1254 (CP1254) encoding (Turkish)               |
-|enc/windows_1257.c  |Windows-1257 (CP1257) encoding (Baltic Rim)            |
-|enc/cp949.c         |CP949 encoding          (only used in Ruby)            |
-|enc/emacs_mule.c    |Emacs internal encoding (only used in Ruby)            |
-|enc/gb2312.c        |GB2312 encoding         (only used in Ruby)            |
-|enc/us_ascii.c      |US-ASCII encoding       (only used in Ruby)            |
-|win32/Makefile      |Makefile for Win32 (VC++)                              |
-|win32/Makefile.mingw|Makefile for Win32 (MinGW)                             |
-|win32/config.h      |config.h for Win32                                     |
-|win32/onigmo.rc     |resource file for Win32                                |
+There's a pretty good work-in-progress manual up at
+   <http://www.wangafu.net/~nickm/libevent-book/> .
+
+For the latest development versions of Libevent, access our Git repository
+via
+
+```
+$ git clone git://levent.git.sourceforge.net/gitroot/levent/libevent
+```
+
+You can browse the git repository online at:
+
+<http://levent.git.sourceforge.net/git/gitweb-index.cgi> 
+
+<https://github.com/libevent/Libevent>
+
+To report bugs, request features, or submit patches to Libevent,
+use the Sourceforge trackers at
+
+<https://sourceforge.net/tracker/?group_id=50884> 
+
+There's also a libevent-users mailing list for talking about Libevent
+use and development: 
+
+<http://archives.seul.org/libevent/users/>
+
+# 3. ACKNOWLEDGMENTS
+
+The following people have helped with suggestions, ideas, code or
+fixing bugs:
+
+ * Samy Al Bahra
+ * Antony Antony
+ * Jacob Appelbaum
+ * Arno Bakker
+ * Weston Andros Adamson
+ * William Ahern
+ * Ivan Andropov
+ * Sergey Avseyev
+ * Avi Bab
+ * Joachim Bauch
+ * Andrey Belobrov
+ * Gilad Benjamini
+ * Stas Bekman
+ * Denis Bilenko
+ * Julien Blache
+ * Kevin Bowling
+ * Tomash Brechko
+ * Kelly Brock
+ * Ralph Castain
+ * Adrian Chadd
+ * Lawnstein Chan
+ * Shuo Chen
+ * Ka-Hing Cheung
+ * Andrew Cox
+ * Paul Croome
+ * George Danchev
+ * Andrew Danforth
+ * Ed Day
+ * Christopher Davis
+ * Mike Davis
+ * Frank Denis
+ * Antony Dovgal
+ * Mihai Draghicioiu
+ * Alexander Drozdov
+ * Mark Ellzey
+ * Shie Erlich
+ * Leonid Evdokimov
+ * Juan Pablo Fernandez
+ * Christophe Fillot
+ * Mike Frysinger
+ * Remi Gacogne
+ * Artem Germanov
+ * Alexander von Gernler
+ * Diego Giagio
+ * Artur Grabowski
+ * Diwaker Gupta
+ * Kuldeep Gupta
+ * Sebastian Hahn
+ * Dave Hart
+ * Greg Hazel
+ * Nicholas Heath
+ * Michael Herf
+ * Sebastian Hahn
+ * Savg He
+ * Mark Heily
+ * Maxime Henrion
+ * Michael Herf
+ * Greg Hewgill
+ * Andrew Hochhaus
+ * Aaron Hopkins
+ * Tani Hosokawa
+ * Jamie Iles
+ * Xiuqiang Jiang
+ * Claudio Jeker
+ * Evan Jones
+ * Marcin Juszkiewicz
+ * George Kadianakis
+ * Makoto Kato
+ * Phua Keat
+ * Azat Khuzhin
+ * Alexander Klauer
+ * Kevin Ko
+ * Brian Koehmstedt
+ * Marko Kreen
+ * Ondřej Kuzník
+ * Valery Kyholodov
+ * Ross Lagerwall
+ * Scott Lamb
+ * Christopher Layne
+ * Adam Langley
+ * Graham Leggett
+ * Volker Lendecke
+ * Philip Lewis
+ * Zhou Li
+ * David Libenzi
+ * Yan Lin
+ * Moshe Litvin
+ * Simon Liu
+ * Mitchell Livingston
+ * Hagne Mahre
+ * Lubomir Marinov
+ * Abilio Marques
+ * Nicolas Martyanoff
+ * Abel Mathew
+ * Nick Mathewson
+ * James Mansion
+ * Nicholas Marriott
+ * Andrey Matveev
+ * Caitlin Mercer
+ * Dagobert Michelsen
+ * Andrea Montefusco
+ * Mansour Moufid
+ * Mina Naguib
+ * Felix Nawothnig
+ * Trond Norbye
+ * Linus Nordberg
+ * Richard Nyberg
+ * Jon Oberheide
+ * John Ohl
+ * Phil Oleson
+ * Alexey Ozeritsky
+ * Dave Pacheco
+ * Derrick Pallas
+ * Tassilo von Parseval
+ * Catalin Patulea
+ * Patrick Pelletier
+ * Simon Perreault
+ * Dan Petro
+ * Pierre Phaneuf
+ * Amarin Phaosawasdi
+ * Ryan Phillips
+ * Dimitre Piskyulev
+ * Pavel Plesov
+ * Jon Poland
+ * Roman Puls
+ * Nate R
+ * Robert Ransom
+ * Balint Reczey
+ * Bert JW Regeer
+ * Nate Rosenblum
+ * Peter Rosin
+ * Maseeb Abdul Qadir
+ * Wang Qin
+ * Alex S
+ * Gyepi Sam
+ * Hanna Schroeter
+ * Ralf Schmitt
+ * Mike Smellie
+ * Steve Snyder
+ * Nir Soffer
+ * Dug Song
+ * Dongsheng Song
+ * Hannes Sowa
+ * Joakim Soderberg
+ * Joseph Spadavecchia
+ * Kevin Springborn
+ * Harlan Stenn
+ * Andrew Sweeney
+ * Ferenc Szalai
+ * Brodie Thiesfield
+ * Jason Toffaletti
+ * Brian Utterback
+ * Gisle Vanem
+ * Bas Verhoeven
+ * Constantine Verutin
+ * Colin Watt
+ * Zack Weinberg
+ * Jardel Weyrich
+ * Jay R. Wren
+ * Zack Weinberg
+ * Mobai Zhang
+ * Alejo
+ * Alex
+ * Taral
+ * propanbutan
+ * masksqwe
+ * mmadia
+ * yangacer
+
+If we have forgotten your name, please contact us.

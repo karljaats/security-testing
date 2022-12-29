@@ -1,35 +1,16 @@
+env:
+  matrix:
+    - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS=""
+    - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_OPENSSL=ON"
+    - EVENT_BUILD_METHOD=cmake EVENT_CMAKE_OPTIONS="-DEVENT__DISABLE_THREAD_SUPPORT=ON"
+    - EVENT_BUILD_METHOD=autotools
 language: c
-
-branches:
-  except:
-    - ruby-2.x
-
 compiler:
   - gcc
   - clang
-
-env:
-  - CFLAGS=--coverage CONFOPT=
-
-sudo: false
-
-addons:
-  apt:
-    packages:
-      - lcov
-      #- python3
-
-before_install:
-  - gem install lcoveralls
-
-before_script:
-  - ./autogen.sh
-  - ./configure $CONFOPT && make
-
+install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq zlib1g-dev libssl-dev build-essential automake autoconf cmake
 script:
-  - make test
-
-after_success:
-  - lcov -c -d .libs -d enc/.libs -o coverage.info
-  - lcoveralls --retry-count 5 coverage.info
-  - bash <(curl -s https://codecov.io/bash)
+  - if [ "$EVENT_BUILD_METHOD" = "autotools" ]; then ./autogen.sh && ./configure && make && make verify; fi
+  - if [ "$EVENT_BUILD_METHOD" = "cmake" ]; then mkdir build && cd build && cmake .. $EVENT_CMAKE_OPTIONS && cmake --build . && CTEST_OUTPUT_ON_FAILURE=1 cmake --build . --target verify; fi
