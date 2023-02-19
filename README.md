@@ -1,318 +1,112 @@
-# 0. BUILDING AND INSTALLATION (Briefly)
+Nanopb - Protocol Buffers for Embedded Systems
+==============================================
 
-## Autoconf
+[![Build Status](https://travis-ci.org/nanopb/nanopb.svg?branch=master)](https://travis-ci.org/nanopb/nanopb)
 
-     $ ./configure
-     $ make
-     $ make verify   # (optional)
-     $ sudo make install
+Nanopb is a small code-size Protocol Buffers implementation in ansi C. It is
+especially suitable for use in microcontrollers, but fits any memory
+restricted system.
 
-## CMake (Windows)
-
-Install CMake: <http://www.cmake.org>
-
-
-     $ md build && cd build
-     $ cmake -G "Visual Studio 10" ..   # Or whatever generator you want to use cmake --help for a list.
-     $ start libevent.sln
-
-## CMake (Unix)
-
-     $ mkdir build && cd build
-     $ cmake ..     # Default to Unix Makefiles.
-     $ make
-     $ make verify  # (optional)
+* **Homepage:** https://jpa.kapsi.fi/nanopb/
+* **Documentation:** https://jpa.kapsi.fi/nanopb/docs/
+* **Downloads:** https://jpa.kapsi.fi/nanopb/download/
+* **Forum:** https://groups.google.com/forum/#!forum/nanopb
 
 
-# 1. BUILDING AND INSTALLATION (In Depth)
 
-## Autoconf
+Using the nanopb library
+------------------------
+To use the nanopb library, you need to do two things:
 
-To build libevent, type
+1. Compile your .proto files for nanopb, using `protoc`.
+2. Include *pb_encode.c*, *pb_decode.c* and *pb_common.c* in your project.
 
-     $ ./configure && make
-
-
- (If you got libevent from the git repository, you will
-  first need to run the included "autogen.sh" script in order to
-  generate the configure script.)
-
-You can run the regression tests by running
-
-     $ make verify
-
-Install as root via
-
-     $ make install
-
-Before reporting any problems, please run the regression tests.
-
-To enable the low-level tracing build the library as:
-
-     $ CFLAGS=-DUSE_DEBUG ./configure [...]
-
-Standard configure flags should work.  In particular, see:
-
-   --disable-shared          Only build static libraries
-   --prefix                  Install all files relative to this directory.
+The easiest way to get started is to study the project in "examples/simple".
+It contains a Makefile, which should work directly under most Linux systems.
+However, for any other kind of build system, see the manual steps in
+README.txt in that folder.
 
 
-The configure script also supports the following flags:
 
-   --enable-gcc-warnings     Enable extra compiler checking with GCC.
-   --disable-malloc-replacement
-                             Don't let applications replace our memory
-                             management functions
-   --disable-openssl         Disable support for OpenSSL encryption.
-   --disable-thread-support  Don't support multithreaded environments.
+Using the Protocol Buffers compiler (protoc)
+--------------------------------------------
+The nanopb generator is implemented as a plugin for the Google's own `protoc`
+compiler. This has the advantage that there is no need to reimplement the
+basic parsing of .proto files. However, it does mean that you need the
+Google's protobuf library in order to run the generator.
 
-## CMake (Windows)
+If you have downloaded a binary package for nanopb (either Windows, Linux or
+Mac OS X version), the `protoc` binary is included in the 'generator-bin'
+folder. In this case, you are ready to go. Simply run this command:
 
-(Note that autoconf is currently the most mature and supported build
-enviroment for libevent; the cmake instructions here are new and
-experimental, though they _should_ be solid.  We hope that cmake will
-still be supported in future versions of Libevent, and will try to
-make sure that happens.)
+    generator-bin/protoc --nanopb_out=. myprotocol.proto
 
-First of all install <http://www.cmake.org>.
+However, if you are using a git checkout or a plain source distribution, you
+need to provide your own version of `protoc` and the Google's protobuf library.
+On Linux, the necessary packages are `protobuf-compiler` and `python-protobuf`.
+On Windows, you can either build Google's protobuf library from source (see section below) or use
+one of the binary distributions of it. In either case, if you use a separate
+`protoc`, you need to manually give the path to the nanopb generator to the `protoc-gen-nanopb` 
+plugin, as follows:
 
-To build libevent using Microsoft Visual studio open the "Visual Studio Command prompt" and type:
+    protoc --plugin=protoc-gen-nanopb=nanopb/generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
 
-```
-$ cd <libevent source dir>
-$ mkdir build && cd build
-$ cmake -G "Visual Studio 10" ..   # Or whatever generator you want to use cmake --help for a list.
-$ start libevent.sln
-```
+Note that the above `protoc`-based commands are the 1-command versions of a 2-command process, as described in the ["Nanopb: Basic concepts" document under the section "Compiling .proto files for nanopb"](https://jpa.kapsi.fi/nanopb/docs/concepts.html#compiling-proto-files-for-nanopb). Here is the 2-command process:
 
-In the above, the ".." refers to the dir containing the Libevent source code. 
-You can build multiple versions (with different compile time settings) from the same source tree
-by creating other build directories. 
+    protoc -omyprotocol.pb myprotocol.proto
+    python nanopb/generator/nanopb_generator.py myprotocol.pb
 
-It is highly recommended to build "out of source" when using
-CMake instead of "in source" like the normal behaviour of autoconf for this reason.
 
-The "NMake Makefiles" CMake generator can be used to build entirely via the command line.
 
-To get a list of settings available for the project you can type:
+Building [Google's protobuf library](https://github.com/protocolbuffers/protobuf) from source
+---------------------------------------------------------------------------------------------
+When building Google's protobuf library from source, be sure to follow both the C++ installation instructions *and* the Python installation instructions, as *both* are required:
+1. [Protobuf's C++ build & installation instructions](https://github.com/protocolbuffers/protobuf/tree/master/src)
+2. [Protobuf's Python build & installation instructions](https://github.com/protocolbuffers/protobuf/tree/master/python)  
+- See additional reading [here](https://github.com/nanopb/nanopb/issues/417#issuecomment-517619517) and [here](https://stackoverflow.com/questions/57367265/how-to-compile-nanopb-proto-file-into-h-and-c-files-using-nanopb-and-protobuf/57367543#57367543).
 
-```
-$ cmake -LH ..
-```
 
-### GUI
 
-CMake also provides a GUI that lets you specify the source directory and output (binary) directory
-that the build should be placed in.
+Running the tests
+-----------------
+If you want to perform further development of the nanopb core, or to verify
+its functionality using your compiler and platform, you'll want to run the
+test suite. The build rules for the test suite are implemented using Scons,
+so you need to have that installed (ex: `sudo apt install scons` on Ubuntu). To run the tests:
 
-### OpenSSL support
+    cd tests
+    scons
 
-To build Libevent with OpenSSL support you will need to have OpenSSL binaries available when building,
-these can be found here: <http://www.openssl.org/related/binaries.html>
+This will show the progress of various test cases. If the output does not
+end in an error, the test cases were successful.
 
-# 2. USEFUL LINKS:
+Note: Mac OS X by default aliases 'clang' as 'gcc', while not actually
+supporting the same command line options as gcc does. To run tests on
+Mac OS X, use: `scons CC=clang CXX=clang`. Same way can be used to run
+tests with different compilers on any platform.
 
-For the latest released version of Libevent, see the official website at
-<http://libevent.org/> .
+For embedded platforms, there is currently support for running the tests
+on STM32 discovery board and [simavr](https://github.com/buserror/simavr)
+AVR simulator. Use `scons PLATFORM=STM32` and `scons PLATFORM=AVR` to run
+these tests.
 
-There's a pretty good work-in-progress manual up at
-   <http://www.wangafu.net/~nickm/libevent-book/> .
 
-For the latest development versions of Libevent, access our Git repository
-via
+Build systems and integration
+-----------------------------
+Nanopb C code itself is designed to be portable and easy to build
+on any platform. Often the bigger hurdle is running the generator which
+takes in the `.proto` files and outputs `.pb.c` definitions.
 
-```
-$ git clone git://levent.git.sourceforge.net/gitroot/levent/libevent
-```
+There exist build rules for several systems:
 
-You can browse the git repository online at:
+* **Makefiles**: `extra/nanopb.mk`, see `examples/simple`
+* **CMake**: `extra/FindNanopb.cmake`, see `examples/cmake`
+* **SCons**: `tests/site_scons` (generator only)
+* **Bazel**: `BUILD` in source root
+* **Conan**: `conanfile.py` in source root
+* **PlatformIO**: https://platformio.org/lib/show/431/Nanopb
+* **PyPI/pip**: https://pypi.org/project/nanopb/
 
-<http://levent.git.sourceforge.net/git/gitweb-index.cgi> 
+And also integration to platform interfaces:
 
-<https://github.com/libevent/Libevent>
-
-To report bugs, request features, or submit patches to Libevent,
-use the Sourceforge trackers at
-
-<https://sourceforge.net/tracker/?group_id=50884> 
-
-There's also a libevent-users mailing list for talking about Libevent
-use and development: 
-
-<http://archives.seul.org/libevent/users/>
-
-# 3. ACKNOWLEDGMENTS
-
-The following people have helped with suggestions, ideas, code or
-fixing bugs:
-
- * Samy Al Bahra
- * Antony Antony
- * Jacob Appelbaum
- * Arno Bakker
- * Weston Andros Adamson
- * William Ahern
- * Ivan Andropov
- * Sergey Avseyev
- * Avi Bab
- * Joachim Bauch
- * Andrey Belobrov
- * Gilad Benjamini
- * Stas Bekman
- * Denis Bilenko
- * Julien Blache
- * Kevin Bowling
- * Tomash Brechko
- * Kelly Brock
- * Ralph Castain
- * Adrian Chadd
- * Lawnstein Chan
- * Shuo Chen
- * Ka-Hing Cheung
- * Andrew Cox
- * Paul Croome
- * George Danchev
- * Andrew Danforth
- * Ed Day
- * Christopher Davis
- * Mike Davis
- * Frank Denis
- * Antony Dovgal
- * Mihai Draghicioiu
- * Alexander Drozdov
- * Mark Ellzey
- * Shie Erlich
- * Leonid Evdokimov
- * Juan Pablo Fernandez
- * Christophe Fillot
- * Mike Frysinger
- * Remi Gacogne
- * Artem Germanov
- * Alexander von Gernler
- * Diego Giagio
- * Artur Grabowski
- * Diwaker Gupta
- * Kuldeep Gupta
- * Sebastian Hahn
- * Dave Hart
- * Greg Hazel
- * Nicholas Heath
- * Michael Herf
- * Sebastian Hahn
- * Savg He
- * Mark Heily
- * Maxime Henrion
- * Michael Herf
- * Greg Hewgill
- * Andrew Hochhaus
- * Aaron Hopkins
- * Tani Hosokawa
- * Jamie Iles
- * Xiuqiang Jiang
- * Claudio Jeker
- * Evan Jones
- * Marcin Juszkiewicz
- * George Kadianakis
- * Makoto Kato
- * Phua Keat
- * Azat Khuzhin
- * Alexander Klauer
- * Kevin Ko
- * Brian Koehmstedt
- * Marko Kreen
- * Ondřej Kuzník
- * Valery Kyholodov
- * Ross Lagerwall
- * Scott Lamb
- * Christopher Layne
- * Adam Langley
- * Graham Leggett
- * Volker Lendecke
- * Philip Lewis
- * Zhou Li
- * David Libenzi
- * Yan Lin
- * Moshe Litvin
- * Simon Liu
- * Mitchell Livingston
- * Hagne Mahre
- * Lubomir Marinov
- * Abilio Marques
- * Nicolas Martyanoff
- * Abel Mathew
- * Nick Mathewson
- * James Mansion
- * Nicholas Marriott
- * Andrey Matveev
- * Caitlin Mercer
- * Dagobert Michelsen
- * Andrea Montefusco
- * Mansour Moufid
- * Mina Naguib
- * Felix Nawothnig
- * Trond Norbye
- * Linus Nordberg
- * Richard Nyberg
- * Jon Oberheide
- * John Ohl
- * Phil Oleson
- * Alexey Ozeritsky
- * Dave Pacheco
- * Derrick Pallas
- * Tassilo von Parseval
- * Catalin Patulea
- * Patrick Pelletier
- * Simon Perreault
- * Dan Petro
- * Pierre Phaneuf
- * Amarin Phaosawasdi
- * Ryan Phillips
- * Dimitre Piskyulev
- * Pavel Plesov
- * Jon Poland
- * Roman Puls
- * Nate R
- * Robert Ransom
- * Balint Reczey
- * Bert JW Regeer
- * Nate Rosenblum
- * Peter Rosin
- * Maseeb Abdul Qadir
- * Wang Qin
- * Alex S
- * Gyepi Sam
- * Hanna Schroeter
- * Ralf Schmitt
- * Mike Smellie
- * Steve Snyder
- * Nir Soffer
- * Dug Song
- * Dongsheng Song
- * Hannes Sowa
- * Joakim Soderberg
- * Joseph Spadavecchia
- * Kevin Springborn
- * Harlan Stenn
- * Andrew Sweeney
- * Ferenc Szalai
- * Brodie Thiesfield
- * Jason Toffaletti
- * Brian Utterback
- * Gisle Vanem
- * Bas Verhoeven
- * Constantine Verutin
- * Colin Watt
- * Zack Weinberg
- * Jardel Weyrich
- * Jay R. Wren
- * Zack Weinberg
- * Mobai Zhang
- * Alejo
- * Alex
- * Taral
- * propanbutan
- * masksqwe
- * mmadia
- * yangacer
-
-If we have forgotten your name, please contact us.
+* **Arduino**: http://platformio.org/lib/show/1385/nanopb-arduino
