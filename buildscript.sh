@@ -8,7 +8,6 @@ sudo apt-get install autoconf automake libtool curl make g++ unzip
 ./autogen.sh
 
 ./configure
-make target CXXFLAGS='-std=c++11'
-make
+make CXXFLAGS='-std=c++14'
 sudo make install
 sudo ldconfig # refresh shared library cache.
