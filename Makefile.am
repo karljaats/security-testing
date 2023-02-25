@@ -4,6 +4,8 @@ ACLOCAL_AMFLAGS = -I m4
 
 AUTOMAKE_OPTIONS = foreign
 
+CXXFLAGS += -std=c++14
+
 # Build . before src so that our all-local and clean-local hooks kicks in at
 # the right time.
 SUBDIRS = . src
