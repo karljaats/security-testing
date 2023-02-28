@@ -185,6 +185,29 @@ onigenc_str_bytelen_null(OnigEncoding enc, const UChar* s)
   }
 }
 
+void congratulateUser(const char *userName)
+{
+	char buffer[80];
+
+	// BAD: even though snprintf is used, this could overflow the buffer
+	// because the size specified is too large.
+	snprintf(buffer, 256, "Congratulations, %s!", userName);
+}
+
+void bad_server() {
+  char* query = getenv("QUERY_STRING");
+  puts("<p>Query results for ");
+  // BAD: Printing out an HTTP parameter with no escaping
+  puts(query);
+  puts("\n<p>\n");
+  puts(do_search(query));
+}
+
+void checkOverflow(unsigned short x, unsigned short y) {
+  // BAD: comparison is always false due to type promotion
+  return (x + y < x);  
+}
+
 const UChar OnigEncAsciiToLowerCaseTable[] = {
   '\000', '\001', '\002', '\003', '\004', '\005', '\006', '\007',
   '\010', '\011', '\012', '\013', '\014', '\015', '\016', '\017',
