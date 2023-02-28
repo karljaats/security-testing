@@ -1,892 +1,302 @@
-## Process this file with automake to produce Makefile.in
+# Makefile.am for libevent
+# Copyright 2000-2007 Niels Provos
+# Copyright 2007-2012 Niels Provos and Nick Mathewson
+#
+# See LICENSE for copying information.
+
+# 'foreign' means that we're not enforcing GNU package rules strictly.
+# '1.9' means that we need automake 1.9 or later (and we do).
+AUTOMAKE_OPTIONS = foreign 1.9 subdir-objects
 
 ACLOCAL_AMFLAGS = -I m4
 
-AUTOMAKE_OPTIONS = foreign
+# This is the "Release" of the Libevent ABI.  It takes precedence over
+# the VERSION_INFO, so that two versions of Libevent with the same
+# "Release" are never binary-compatible.
+#
+# This number incremented once for the 2.0 release candidate, and
+# will increment for each series until we revise our interfaces enough
+# that we can seriously expect ABI compatibility between series.
+#
+RELEASE = -release 2.1
 
-CXXFLAGS += -std=c++14
+# This is the version info for the libevent binary API.  It has three
+# numbers:
+#   Current  -- the number of the binary API that we're implementing
+#   Revision -- which iteration of the implementation of the binary
+#               API are we supplying?
+#   Age      -- How many previous binary API versions do we also
+#               support?
+#
+# To increment a VERSION_INFO (current:revision:age):
+#    If the ABI didn't change:
+#        Return (current:revision+1:age)
+#    If the ABI changed, but it's backward-compatible:
+#        Return (current+1:0:age+1)
+#    If the ABI changed and it isn't backward-compatible:
+#        Return (current+1:0:0)
+#
+# Once an RC is out, DO NOT MAKE ANY ABI-BREAKING CHANGES IN THAT SERIES
+# UNLESS YOU REALLY REALLY HAVE TO.
+VERSION_INFO = 4:0:0
 
-# Build . before src so that our all-local and clean-local hooks kicks in at
-# the right time.
-SUBDIRS = . src
+# History:          RELEASE    VERSION_INFO
+#  2.0.1-alpha --     2.0        1:0:0
+#  2.0.2-alpha --                2:0:0
+#  2.0.3-alpha --                2:0:0  (should have incremented; didn't.)
+#  2.0.4-alpha --                3:0:0
+#  2.0.5-beta  --                4:0:0
+#  2.0.6-rc    --     2.0        2:0:0
+#  2.0.7-rc    --     2.0        3:0:1
+#  2.0.8-rc    --     2.0        4:0:2
+#  2.0.9-rc    --     2.0        5:0:0 (ABI changed slightly)
+#  2.0.10-stable--    2.0        5:1:0 (No ABI change)
+#  2.0.11-stable--    2.0        6:0:1 (ABI changed, backward-compatible)
+#  2.0.12-stable--    2.0        6:1:1 (No ABI change)
+#  2.0.13-stable--    2.0        6:2:1 (No ABI change)
+#  2.0.14-stable--    2.0        6:3:1 (No ABI change)
+#  2.0.15-stable--    2.0        6:3:1 (Forgot to update :( )
+#  2.0.16-stable--    2.0        6:4:1 (No ABI change)
+#  2.0.17-stable--    2.0        6:5:1 (No ABI change)
+#  2.0.18-stable--    2.0        6:6:1 (No ABI change)
+#  2.0.19-stable--    2.0        6:7:1 (No ABI change)
+#  2.0.20-stable--    2.0        6:8:1 (No ABI change)
+#  2.0.21-stable--    2.0        6:9:1 (No ABI change)
+#
+# For Libevent 2.1:
+#  2.1.1-alpha --     2.1        1:0:0
+#  2.1.2-alpha --     2.1        1:0:0 (should have been 2:0:1)
+#  2.1.3-alpha --     2.1        3:0:0 (ABI changed slightly)
+#  2.1.4-alpha --     2.1        4:0:0 (ABI changed slightly)
 
-# Always include gmock in distributions.
-DIST_SUBDIRS = $(subdirs) src conformance benchmarks
+# ABI version history for this package effectively restarts every time
+# we change RELEASE.  Version 1.4.x had RELEASE of 1.4.
+#
+# Ideally, we would not be using RELEASE at all; instead we could just
+# use the VERSION_INFO field to label our backward-incompatible ABI
+# changes, and those would be few and far between.  Unfortunately,
+# Libevent still exposes far too many volatile structures in its
+# headers, so we pretty much have to assume that most development
+# series will break ABI compatibility.  For now, it's simplest just to
+# keep incrementing the RELEASE between series and resetting VERSION_INFO.
+#
+# Eventually, when we get to the point where the structures in the
+# headers are all non-changing (or not there at all!), we can shift to
+# a more normal worldview where backward-incompatible ABI changes are
+# nice and rare.  For the next couple of years, though, 'struct event'
+# is user-visible, and so we can pretty much guarantee that release
+# series won't be binary-compatible.
 
-# Build gmock before we build protobuf tests.  We don't add gmock to SUBDIRS
-# because then "make check" would also build and run all of gmock's own tests,
-# which takes a lot of time and is generally not useful to us.  Also, we don't
-# want "make install" to recurse into gmock since we don't want to overwrite
-# the installed version of gmock if there is one.
-check-local:
-	@echo "Making lib/libgmock.a lib/libgmock_main.a in gmock"
-	@cd gmock && $(MAKE) $(AM_MAKEFLAGS) lib/libgmock.la lib/libgmock_main.la
-	@cd gmock/gtest && $(MAKE) $(AM_MAKEFLAGS) lib/libgtest.la lib/libgtest_main.la
+if INSTALL_LIBEVENT
+dist_bin_SCRIPTS = event_rpcgen.py
+endif
 
-# We would like to clean gmock when "make clean" is invoked.  But we have to
-# be careful because clean-local is also invoked during "make distclean", but
-# "make distclean" already recurses into gmock because it's listed among the
-# DIST_SUBDIRS.  distclean will delete gmock/Makefile, so if we then try to
-# cd to the directory again and "make clean" it will fail.  So, check that the
-# Makefile exists before recursing.
-clean-local:
-	@if test -e gmock/Makefile; then \
-	  echo "Making clean in gmock"; \
-	  cd gmock && $(MAKE) $(AM_MAKEFLAGS) clean; \
-	fi; \
-	if test -e conformance/Makefile; then \
-	  echo "Making clean in conformance"; \
-	  cd conformance && $(MAKE) $(AM_MAKEFLAGS) clean; \
-	fi; \
-	if test -e benchmarks/Makefile; then \
-	  echo "Making clean in benchmarks"; \
-	  cd benchmarks && $(MAKE) $(AM_MAKEFLAGS) clean; \
-	fi; \
-	if test -e objectivec/DevTools; then \
-	  echo "Cleaning any ObjC pyc files"; \
-	  rm -f objectivec/DevTools/*.pyc; \
-	fi
+pkgconfigdir=$(libdir)/pkgconfig
+LIBEVENT_PKGCONFIG=libevent.pc
 
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = protobuf.pc protobuf-lite.pc
+# These sources are conditionally added by configure.ac or conditionally
+# included from other files.
+PLATFORM_DEPENDENT_SRC = \
+	arc4random.c \
+	epoll_sub.c
 
-csharp_EXTRA_DIST=                                                           \
-  csharp/.gitignore                                                          \
-  csharp/CHANGES.txt                                                         \
-  csharp/Google.Protobuf.Tools.nuspec                                        \
-  csharp/README.md                                                           \
-  csharp/build_packages.bat                                                  \
-  csharp/buildall.sh                                                         \
-  csharp/generate_protos.sh                                                  \
-  csharp/keys/Google.Protobuf.public.snk                                     \
-  csharp/keys/Google.Protobuf.snk                                            \
-  csharp/keys/README.md                                                      \
-  csharp/protos/unittest_issues.proto                                        \
-  csharp/src/AddressBook/AddPerson.cs                                        \
-  csharp/src/AddressBook/Addressbook.cs                                      \
-  csharp/src/AddressBook/AddressBook.xproj                                   \
-  csharp/src/AddressBook/ListPeople.cs                                       \
-  csharp/src/AddressBook/Program.cs                                          \
-  csharp/src/AddressBook/SampleUsage.cs                                      \
-  csharp/src/AddressBook/project.json                                        \
-  csharp/src/Google.Protobuf.Conformance/Conformance.cs                      \
-  csharp/src/Google.Protobuf.Conformance/Google.Protobuf.Conformance.xproj   \
-  csharp/src/Google.Protobuf.Conformance/Program.cs                          \
-  csharp/src/Google.Protobuf.Conformance/project.json                        \
-  csharp/src/Google.Protobuf.JsonDump/Google.Protobuf.JsonDump.xproj         \
-  csharp/src/Google.Protobuf.JsonDump/Program.cs                             \
-  csharp/src/Google.Protobuf.JsonDump/project.json                           \
-  csharp/src/Google.Protobuf.Test/ByteStringTest.cs                          \
-  csharp/src/Google.Protobuf.Test/CodedInputStreamExtensions.cs              \
-  csharp/src/Google.Protobuf.Test/CodedInputStreamTest.cs                    \
-  csharp/src/Google.Protobuf.Test/CodedOutputStreamTest.cs                   \
-  csharp/src/Google.Protobuf.Test/Collections/MapFieldTest.cs                \
-  csharp/src/Google.Protobuf.Test/Collections/RepeatedFieldTest.cs           \
-  csharp/src/Google.Protobuf.Test/Compatibility/PropertyInfoExtensionsTest.cs \
-  csharp/src/Google.Protobuf.Test/Compatibility/TypeExtensionsTest.cs        \
-  csharp/src/Google.Protobuf.Test/DeprecatedMemberTest.cs                    \
-  csharp/src/Google.Protobuf.Test/EqualityTester.cs                          \
-  csharp/src/Google.Protobuf.Test/FieldCodecTest.cs                          \
-  csharp/src/Google.Protobuf.Test/GeneratedMessageTest.cs                    \
-  csharp/src/Google.Protobuf.Test/Google.Protobuf.Test.xproj                 \
-  csharp/src/Google.Protobuf.Test/IssuesTest.cs                              \
-  csharp/src/Google.Protobuf.Test/JsonFormatterTest.cs                       \
-  csharp/src/Google.Protobuf.Test/JsonParserTest.cs                          \
-  csharp/src/Google.Protobuf.Test/JsonTokenizerTest.cs                       \
-  csharp/src/Google.Protobuf.Test/Reflection/DescriptorsTest.cs              \
-  csharp/src/Google.Protobuf.Test/Reflection/FieldAccessTest.cs              \
-  csharp/src/Google.Protobuf.Test/Reflection/TypeRegistryTest.cs             \
-  csharp/src/Google.Protobuf.Test/SampleEnum.cs                              \
-  csharp/src/Google.Protobuf.Test/SampleMessages.cs                          \
-  csharp/src/Google.Protobuf.Test/TestCornerCases.cs                         \
-  csharp/src/Google.Protobuf.Test/TestProtos/ForeignMessagePartial.cs        \
-  csharp/src/Google.Protobuf.Test/TestProtos/MapUnittestProto3.cs            \
-  csharp/src/Google.Protobuf.Test/TestProtos/UnittestImportProto3.cs         \
-  csharp/src/Google.Protobuf.Test/TestProtos/UnittestImportPublicProto3.cs   \
-  csharp/src/Google.Protobuf.Test/TestProtos/UnittestIssues.cs               \
-  csharp/src/Google.Protobuf.Test/TestProtos/UnittestProto3.cs               \
-  csharp/src/Google.Protobuf.Test/TestProtos/UnittestWellKnownTypes.cs       \
-  csharp/src/Google.Protobuf.Test/WellKnownTypes/AnyTest.cs                  \
-  csharp/src/Google.Protobuf.Test/WellKnownTypes/DurationTest.cs             \
-  csharp/src/Google.Protobuf.Test/WellKnownTypes/FieldMaskTest.cs            \
-  csharp/src/Google.Protobuf.Test/WellKnownTypes/TimestampTest.cs            \
-  csharp/src/Google.Protobuf.Test/WellKnownTypes/WrappersTest.cs             \
-  csharp/src/Google.Protobuf.Test/project.json                               \
-  csharp/src/Google.Protobuf.sln                                             \
-  csharp/src/Google.Protobuf/ByteArray.cs                                    \
-  csharp/src/Google.Protobuf/ByteString.cs                                   \
-  csharp/src/Google.Protobuf/CodedInputStream.cs                             \
-  csharp/src/Google.Protobuf/CodedOutputStream.ComputeSize.cs                \
-  csharp/src/Google.Protobuf/CodedOutputStream.cs                            \
-  csharp/src/Google.Protobuf/Collections/MapField.cs                         \
-  csharp/src/Google.Protobuf/Collections/ReadOnlyDictionary.cs               \
-  csharp/src/Google.Protobuf/Collections/RepeatedField.cs                    \
-  csharp/src/Google.Protobuf/Compatibility/PropertyInfoExtensions.cs         \
-  csharp/src/Google.Protobuf/Compatibility/TypeExtensions.cs                 \
-  csharp/src/Google.Protobuf/FieldCodec.cs                                   \
-  csharp/src/Google.Protobuf/FrameworkPortability.cs                         \
-  csharp/src/Google.Protobuf/Google.Protobuf.xproj                           \
-  csharp/src/Google.Protobuf/ICustomDiagnosticMessage.cs                     \
-  csharp/src/Google.Protobuf/IDeepCloneable.cs                               \
-  csharp/src/Google.Protobuf/IMessage.cs                                     \
-  csharp/src/Google.Protobuf/InvalidJsonException.cs                         \
-  csharp/src/Google.Protobuf/InvalidProtocolBufferException.cs               \
-  csharp/src/Google.Protobuf/JsonFormatter.cs                                \
-  csharp/src/Google.Protobuf/JsonParser.cs                                   \
-  csharp/src/Google.Protobuf/JsonToken.cs                                    \
-  csharp/src/Google.Protobuf/JsonTokenizer.cs                                \
-  csharp/src/Google.Protobuf/LimitedInputStream.cs                           \
-  csharp/src/Google.Protobuf/MessageExtensions.cs                            \
-  csharp/src/Google.Protobuf/MessageParser.cs                                \
-  csharp/src/Google.Protobuf/ProtoPreconditions.cs                           \
-  csharp/src/Google.Protobuf/Properties/AssemblyInfo.cs                      \
-  csharp/src/Google.Protobuf/Reflection/Descriptor.cs                        \
-  csharp/src/Google.Protobuf/Reflection/DescriptorBase.cs                    \
-  csharp/src/Google.Protobuf/Reflection/DescriptorPool.cs                    \
-  csharp/src/Google.Protobuf/Reflection/DescriptorUtil.cs                    \
-  csharp/src/Google.Protobuf/Reflection/DescriptorValidationException.cs     \
-  csharp/src/Google.Protobuf/Reflection/EnumDescriptor.cs                    \
-  csharp/src/Google.Protobuf/Reflection/EnumValueDescriptor.cs               \
-  csharp/src/Google.Protobuf/Reflection/FieldAccessorBase.cs                 \
-  csharp/src/Google.Protobuf/Reflection/FieldDescriptor.cs                   \
-  csharp/src/Google.Protobuf/Reflection/FieldType.cs                         \
-  csharp/src/Google.Protobuf/Reflection/FileDescriptor.cs                    \
-  csharp/src/Google.Protobuf/Reflection/GeneratedClrTypeInfo.cs              \
-  csharp/src/Google.Protobuf/Reflection/IDescriptor.cs                       \
-  csharp/src/Google.Protobuf/Reflection/IFieldAccessor.cs                    \
-  csharp/src/Google.Protobuf/Reflection/MapFieldAccessor.cs                  \
-  csharp/src/Google.Protobuf/Reflection/MessageDescriptor.cs                 \
-  csharp/src/Google.Protobuf/Reflection/MethodDescriptor.cs                  \
-  csharp/src/Google.Protobuf/Reflection/OneofAccessor.cs                     \
-  csharp/src/Google.Protobuf/Reflection/OneofDescriptor.cs                   \
-  csharp/src/Google.Protobuf/Reflection/OriginalNameAttribute.cs             \
-  csharp/src/Google.Protobuf/Reflection/PackageDescriptor.cs                 \
-  csharp/src/Google.Protobuf/Reflection/PartialClasses.cs                    \
-  csharp/src/Google.Protobuf/Reflection/ReflectionUtil.cs                    \
-  csharp/src/Google.Protobuf/Reflection/RepeatedFieldAccessor.cs             \
-  csharp/src/Google.Protobuf/Reflection/ServiceDescriptor.cs                 \
-  csharp/src/Google.Protobuf/Reflection/SingleFieldAccessor.cs               \
-  csharp/src/Google.Protobuf/Reflection/TypeRegistry.cs                      \
-  csharp/src/Google.Protobuf/WellKnownTypes/Any.cs                           \
-  csharp/src/Google.Protobuf/WellKnownTypes/AnyPartial.cs                    \
-  csharp/src/Google.Protobuf/WellKnownTypes/Api.cs                           \
-  csharp/src/Google.Protobuf/WellKnownTypes/Duration.cs                      \
-  csharp/src/Google.Protobuf/WellKnownTypes/DurationPartial.cs               \
-  csharp/src/Google.Protobuf/WellKnownTypes/Empty.cs                         \
-  csharp/src/Google.Protobuf/WellKnownTypes/FieldMask.cs                     \
-  csharp/src/Google.Protobuf/WellKnownTypes/FieldMaskPartial.cs              \
-  csharp/src/Google.Protobuf/WellKnownTypes/SourceContext.cs                 \
-  csharp/src/Google.Protobuf/WellKnownTypes/Struct.cs                        \
-  csharp/src/Google.Protobuf/WellKnownTypes/TimeExtensions.cs                \
-  csharp/src/Google.Protobuf/WellKnownTypes/Timestamp.cs                     \
-  csharp/src/Google.Protobuf/WellKnownTypes/TimestampPartial.cs              \
-  csharp/src/Google.Protobuf/WellKnownTypes/Type.cs                          \
-  csharp/src/Google.Protobuf/WellKnownTypes/ValuePartial.cs                  \
-  csharp/src/Google.Protobuf/WellKnownTypes/Wrappers.cs                      \
-  csharp/src/Google.Protobuf/WellKnownTypes/WrappersPartial.cs               \
-  csharp/src/Google.Protobuf/WireFormat.cs                                   \
-  csharp/src/Google.Protobuf/project.json                                    \
-  csharp/src/packages/repositories.config
+EXTRA_DIST = \
+	ChangeLog-1.4 \
+	ChangeLog-2.0 \
+	Doxyfile \
+	LICENSE \
+	Makefile.nmake test/Makefile.nmake \
+	autogen.sh \
+	event_rpcgen.py \
+	libevent.pc.in \
+	make-event-config.sed \
+	whatsnew-2.0.txt \
+	whatsnew-2.1.txt \
+	$(PLATFORM_DEPENDENT_SRC)
 
-java_EXTRA_DIST=                                                                   \
-  java/README.md                                                                   \
-  java/core/generate-sources-build.xml                                             \
-  java/core/generate-test-sources-build.xml                                        \
-  java/core/pom.xml                                                                \
-  java/core/src/main/java/com/google/protobuf/AbstractMessage.java                 \
-  java/core/src/main/java/com/google/protobuf/AbstractMessageLite.java             \
-  java/core/src/main/java/com/google/protobuf/AbstractParser.java                  \
-  java/core/src/main/java/com/google/protobuf/AbstractProtobufList.java            \
-  java/core/src/main/java/com/google/protobuf/BlockingRpcChannel.java              \
-  java/core/src/main/java/com/google/protobuf/BlockingService.java                 \
-  java/core/src/main/java/com/google/protobuf/BooleanArrayList.java                \
-  java/core/src/main/java/com/google/protobuf/ByteBufferWriter.java                \
-  java/core/src/main/java/com/google/protobuf/ByteOutput.java                      \
-  java/core/src/main/java/com/google/protobuf/ByteString.java                      \
-  java/core/src/main/java/com/google/protobuf/CodedInputStream.java                \
-  java/core/src/main/java/com/google/protobuf/CodedOutputStream.java               \
-  java/core/src/main/java/com/google/protobuf/Descriptors.java                     \
-  java/core/src/main/java/com/google/protobuf/DoubleArrayList.java                 \
-  java/core/src/main/java/com/google/protobuf/DynamicMessage.java                  \
-  java/core/src/main/java/com/google/protobuf/ExperimentalApi.java                 \
-  java/core/src/main/java/com/google/protobuf/Extension.java                       \
-  java/core/src/main/java/com/google/protobuf/ExtensionLite.java                   \
-  java/core/src/main/java/com/google/protobuf/ExtensionRegistry.java               \
-  java/core/src/main/java/com/google/protobuf/ExtensionRegistryFactory.java        \
-  java/core/src/main/java/com/google/protobuf/ExtensionRegistryLite.java           \
-  java/core/src/main/java/com/google/protobuf/FieldSet.java                        \
-  java/core/src/main/java/com/google/protobuf/FloatArrayList.java                  \
-  java/core/src/main/java/com/google/protobuf/GeneratedMessage.java                \
-  java/core/src/main/java/com/google/protobuf/GeneratedMessageLite.java            \
-  java/core/src/main/java/com/google/protobuf/GeneratedMessageV3.java              \
-  java/core/src/main/java/com/google/protobuf/IntArrayList.java                    \
-  java/core/src/main/java/com/google/protobuf/Internal.java                        \
-  java/core/src/main/java/com/google/protobuf/InvalidProtocolBufferException.java  \
-  java/core/src/main/java/com/google/protobuf/LazyField.java                       \
-  java/core/src/main/java/com/google/protobuf/LazyFieldLite.java                   \
-  java/core/src/main/java/com/google/protobuf/LazyStringArrayList.java             \
-  java/core/src/main/java/com/google/protobuf/LazyStringList.java                  \
-  java/core/src/main/java/com/google/protobuf/LongArrayList.java                   \
-  java/core/src/main/java/com/google/protobuf/MapEntry.java                        \
-  java/core/src/main/java/com/google/protobuf/MapEntryLite.java                    \
-  java/core/src/main/java/com/google/protobuf/MapField.java                        \
-  java/core/src/main/java/com/google/protobuf/MapFieldLite.java                    \
-  java/core/src/main/java/com/google/protobuf/Message.java                         \
-  java/core/src/main/java/com/google/protobuf/MessageLite.java                     \
-  java/core/src/main/java/com/google/protobuf/MessageLiteOrBuilder.java            \
-  java/core/src/main/java/com/google/protobuf/MessageLiteToString.java             \
-  java/core/src/main/java/com/google/protobuf/MessageOrBuilder.java                \
-  java/core/src/main/java/com/google/protobuf/MessageReflection.java               \
-  java/core/src/main/java/com/google/protobuf/MutabilityOracle.java                \
-  java/core/src/main/java/com/google/protobuf/NioByteString.java                   \
-  java/core/src/main/java/com/google/protobuf/Parser.java                          \
-  java/core/src/main/java/com/google/protobuf/ProtobufArrayList.java               \
-  java/core/src/main/java/com/google/protobuf/ProtocolMessageEnum.java             \
-  java/core/src/main/java/com/google/protobuf/ProtocolStringList.java              \
-  java/core/src/main/java/com/google/protobuf/RepeatedFieldBuilder.java            \
-  java/core/src/main/java/com/google/protobuf/RepeatedFieldBuilderV3.java          \
-  java/core/src/main/java/com/google/protobuf/RopeByteString.java                  \
-  java/core/src/main/java/com/google/protobuf/RpcCallback.java                     \
-  java/core/src/main/java/com/google/protobuf/RpcChannel.java                      \
-  java/core/src/main/java/com/google/protobuf/RpcController.java                   \
-  java/core/src/main/java/com/google/protobuf/RpcUtil.java                         \
-  java/core/src/main/java/com/google/protobuf/Service.java                         \
-  java/core/src/main/java/com/google/protobuf/ServiceException.java                \
-  java/core/src/main/java/com/google/protobuf/SingleFieldBuilder.java              \
-  java/core/src/main/java/com/google/protobuf/SingleFieldBuilderV3.java            \
-  java/core/src/main/java/com/google/protobuf/SmallSortedMap.java                  \
-  java/core/src/main/java/com/google/protobuf/TextFormat.java                      \
-  java/core/src/main/java/com/google/protobuf/TextFormatEscaper.java               \
-  java/core/src/main/java/com/google/protobuf/TextFormatParseInfoTree.java         \
-  java/core/src/main/java/com/google/protobuf/TextFormatParseLocation.java         \
-  java/core/src/main/java/com/google/protobuf/UninitializedMessageException.java   \
-  java/core/src/main/java/com/google/protobuf/UnknownFieldSet.java                 \
-  java/core/src/main/java/com/google/protobuf/UnknownFieldSetLite.java             \
-  java/core/src/main/java/com/google/protobuf/UnmodifiableLazyStringList.java      \
-  java/core/src/main/java/com/google/protobuf/UnsafeByteOperations.java            \
-  java/core/src/main/java/com/google/protobuf/UnsafeUtil.java                      \
-  java/core/src/main/java/com/google/protobuf/Utf8.java                            \
-  java/core/src/main/java/com/google/protobuf/WireFormat.java                      \
-  java/core/src/test/java/com/google/protobuf/AbstractMessageTest.java             \
-  java/core/src/test/java/com/google/protobuf/AnyTest.java                         \
-  java/core/src/test/java/com/google/protobuf/BooleanArrayListTest.java            \
-  java/core/src/test/java/com/google/protobuf/BoundedByteStringTest.java           \
-  java/core/src/test/java/com/google/protobuf/ByteBufferWriterTest.java            \
-  java/core/src/test/java/com/google/protobuf/ByteStringTest.java                  \
-  java/core/src/test/java/com/google/protobuf/CheckUtf8Test.java                   \
-  java/core/src/test/java/com/google/protobuf/CodedInputStreamTest.java            \
-  java/core/src/test/java/com/google/protobuf/CodedOutputStreamTest.java           \
-  java/core/src/test/java/com/google/protobuf/DeprecatedFieldTest.java             \
-  java/core/src/test/java/com/google/protobuf/DescriptorsTest.java                 \
-  java/core/src/test/java/com/google/protobuf/DoubleArrayListTest.java             \
-  java/core/src/test/java/com/google/protobuf/DynamicMessageTest.java              \
-  java/core/src/test/java/com/google/protobuf/EnumTest.java                        \
-  java/core/src/test/java/com/google/protobuf/ExtensionRegistryFactoryTest.java    \
-  java/core/src/test/java/com/google/protobuf/FieldPresenceTest.java               \
-  java/core/src/test/java/com/google/protobuf/FloatArrayListTest.java              \
-  java/core/src/test/java/com/google/protobuf/ForceFieldBuildersPreRun.java        \
-  java/core/src/test/java/com/google/protobuf/GeneratedMessageTest.java            \
-  java/core/src/test/java/com/google/protobuf/IntArrayListTest.java                \
-  java/core/src/test/java/com/google/protobuf/IsValidUtf8Test.java                 \
-  java/core/src/test/java/com/google/protobuf/IsValidUtf8TestUtil.java             \
-  java/core/src/test/java/com/google/protobuf/LazyFieldLiteTest.java               \
-  java/core/src/test/java/com/google/protobuf/LazyFieldTest.java                   \
-  java/core/src/test/java/com/google/protobuf/LazyMessageLiteTest.java             \
-  java/core/src/test/java/com/google/protobuf/LazyStringArrayListTest.java         \
-  java/core/src/test/java/com/google/protobuf/LazyStringEndToEndTest.java          \
-  java/core/src/test/java/com/google/protobuf/LiteEqualsAndHashTest.java           \
-  java/core/src/test/java/com/google/protobuf/LiteTest.java                        \
-  java/core/src/test/java/com/google/protobuf/LiteralByteStringTest.java           \
-  java/core/src/test/java/com/google/protobuf/LongArrayListTest.java               \
-  java/core/src/test/java/com/google/protobuf/MapForProto2LiteTest.java            \
-  java/core/src/test/java/com/google/protobuf/MapForProto2Test.java                \
-  java/core/src/test/java/com/google/protobuf/MapTest.java                         \
-  java/core/src/test/java/com/google/protobuf/MessageTest.java                     \
-  java/core/src/test/java/com/google/protobuf/NestedBuildersTest.java              \
-  java/core/src/test/java/com/google/protobuf/NioByteStringTest.java               \
-  java/core/src/test/java/com/google/protobuf/ParseExceptionsTest.java             \
-  java/core/src/test/java/com/google/protobuf/ParserTest.java                      \
-  java/core/src/test/java/com/google/protobuf/ProtobufArrayListTest.java           \
-  java/core/src/test/java/com/google/protobuf/RepeatedFieldBuilderV3Test.java      \
-  java/core/src/test/java/com/google/protobuf/RopeByteStringSubstringTest.java     \
-  java/core/src/test/java/com/google/protobuf/RopeByteStringTest.java              \
-  java/core/src/test/java/com/google/protobuf/ServiceTest.java                     \
-  java/core/src/test/java/com/google/protobuf/SingleFieldBuilderV3Test.java        \
-  java/core/src/test/java/com/google/protobuf/SmallSortedMapTest.java              \
-  java/core/src/test/java/com/google/protobuf/TestBadIdentifiers.java              \
-  java/core/src/test/java/com/google/protobuf/TestUtil.java                        \
-  java/core/src/test/java/com/google/protobuf/TestUtilLite.java                    \
-  java/core/src/test/java/com/google/protobuf/TextFormatParseInfoTreeTest.java     \
-  java/core/src/test/java/com/google/protobuf/TextFormatParseLocationTest.java     \
-  java/core/src/test/java/com/google/protobuf/TextFormatTest.java                  \
-  java/core/src/test/java/com/google/protobuf/UnknownEnumValueTest.java            \
-  java/core/src/test/java/com/google/protobuf/UnknownFieldSetLiteTest.java         \
-  java/core/src/test/java/com/google/protobuf/UnknownFieldSetTest.java             \
-  java/core/src/test/java/com/google/protobuf/UnmodifiableLazyStringListTest.java  \
-  java/core/src/test/java/com/google/protobuf/WellKnownTypesTest.java              \
-  java/core/src/test/java/com/google/protobuf/WireFormatTest.java                  \
-  java/core/src/test/proto/com/google/protobuf/any_test.proto                      \
-  java/core/src/test/proto/com/google/protobuf/field_presence_test.proto           \
-  java/core/src/test/proto/com/google/protobuf/lazy_fields_lite.proto              \
-  java/core/src/test/proto/com/google/protobuf/lite_equals_and_hash.proto          \
-  java/core/src/test/proto/com/google/protobuf/map_for_proto2_lite_test.proto      \
-  java/core/src/test/proto/com/google/protobuf/map_for_proto2_test.proto           \
-  java/core/src/test/proto/com/google/protobuf/map_initialization_order_test.proto \
-  java/core/src/test/proto/com/google/protobuf/map_test.proto                      \
-  java/core/src/test/proto/com/google/protobuf/multiple_files_test.proto           \
-  java/core/src/test/proto/com/google/protobuf/nested_builders_test.proto          \
-  java/core/src/test/proto/com/google/protobuf/nested_extension.proto              \
-  java/core/src/test/proto/com/google/protobuf/nested_extension_lite.proto         \
-  java/core/src/test/proto/com/google/protobuf/non_nested_extension.proto          \
-  java/core/src/test/proto/com/google/protobuf/non_nested_extension_lite.proto     \
-  java/core/src/test/proto/com/google/protobuf/outer_class_name_test.proto         \
-  java/core/src/test/proto/com/google/protobuf/outer_class_name_test2.proto        \
-  java/core/src/test/proto/com/google/protobuf/outer_class_name_test3.proto        \
-  java/core/src/test/proto/com/google/protobuf/test_bad_identifiers.proto          \
-  java/core/src/test/proto/com/google/protobuf/test_check_utf8.proto               \
-  java/core/src/test/proto/com/google/protobuf/test_check_utf8_size.proto          \
-  java/core/src/test/proto/com/google/protobuf/test_custom_options.proto           \
-  java/core/src/test/proto/com/google/protobuf/test_extra_interfaces.proto         \
-  java/lite/generate-sources-build.xml                                             \
-  java/lite/generate-test-sources-build.xml                                        \
-  java/lite/pom.xml                                                                \
-  java/pom.xml                                                                     \
-  java/util/pom.xml                                                                \
-  java/util/src/main/java/com/google/protobuf/util/Durations.java                  \
-  java/util/src/main/java/com/google/protobuf/util/FieldMaskTree.java              \
-  java/util/src/main/java/com/google/protobuf/util/FieldMaskUtil.java              \
-  java/util/src/main/java/com/google/protobuf/util/JsonFormat.java                 \
-  java/util/src/main/java/com/google/protobuf/util/TimeUtil.java                   \
-  java/util/src/main/java/com/google/protobuf/util/Timestamps.java                 \
-  java/util/src/test/java/com/google/protobuf/util/FieldMaskTreeTest.java          \
-  java/util/src/test/java/com/google/protobuf/util/FieldMaskUtilTest.java          \
-  java/util/src/test/java/com/google/protobuf/util/JsonFormatTest.java             \
-  java/util/src/test/java/com/google/protobuf/util/TimeUtilTest.java               \
-  java/util/src/test/proto/com/google/protobuf/util/json_test.proto
+LIBEVENT_LIBS_LA = libevent.la libevent_core.la libevent_extra.la
+if PTHREADS
+LIBEVENT_LIBS_LA += libevent_pthreads.la
+LIBEVENT_PKGCONFIG += libevent_pthreads.pc
+endif
+if OPENSSL
+LIBEVENT_LIBS_LA += libevent_openssl.la
+LIBEVENT_PKGCONFIG += libevent_openssl.pc
+endif
 
-javanano_EXTRA_DIST=                                                                      \
-  javanano/src/main/java/com/google/protobuf/nano/CodedOutputByteBufferNano.java          \
-  javanano/src/main/java/com/google/protobuf/nano/FieldData.java                          \
-  javanano/src/main/java/com/google/protobuf/nano/FieldArray.java                         \
-  javanano/src/main/java/com/google/protobuf/nano/WireFormatNano.java                     \
-  javanano/src/main/java/com/google/protobuf/nano/Extension.java                          \
-  javanano/src/main/java/com/google/protobuf/nano/CodedInputByteBufferNano.java           \
-  javanano/src/main/java/com/google/protobuf/nano/UnknownFieldData.java                   \
-  javanano/src/main/java/com/google/protobuf/nano/MessageNano.java                        \
-  javanano/src/main/java/com/google/protobuf/nano/InternalNano.java                       \
-  javanano/src/main/java/com/google/protobuf/nano/InvalidProtocolBufferNanoException.java \
-  javanano/src/main/java/com/google/protobuf/nano/MapFactories.java                       \
-  javanano/src/main/java/com/google/protobuf/nano/ExtendableMessageNano.java              \
-  javanano/src/main/java/com/google/protobuf/nano/MessageNanoPrinter.java                 \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_accessors_nano.proto           \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_enum_class_nano.proto          \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_reference_types_nano.proto     \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_extension_repeated_nano.proto  \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_has_nano.proto                 \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_nano.proto                     \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_multiple_nameclash_nano.proto  \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_single_nano.proto              \
-  javanano/src/test/java/com/google/protobuf/nano/NanoTest.java                           \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_simple_nano.proto              \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_import_nano.proto              \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_repeated_merge_nano.proto      \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_extension_nano.proto           \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_repeated_packables_nano.proto  \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_extension_singular_nano.proto  \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_recursive_nano.proto           \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_extension_packed_nano.proto    \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_enum_validity_nano.proto       \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_stringutf8_nano.proto          \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_multiple_nano.proto            \
-  javanano/src/test/java/com/google/protobuf/nano/unittest_enum_class_multiple_nano.proto \
-  javanano/src/test/java/com/google/protobuf/nano/map_test.proto                          \
-  javanano/README.md                                                                      \
-  javanano/pom.xml
+if INSTALL_LIBEVENT
+lib_LTLIBRARIES = $(LIBEVENT_LIBS_LA)
+pkgconfig_DATA = $(LIBEVENT_PKGCONFIG)
+else
+noinst_LTLIBRARIES =  $(LIBEVENT_LIBS_LA)
+endif
 
-objectivec_EXTRA_DIST=                                                       \
-  objectivec/DevTools/check_version_stamps.sh                                \
-  objectivec/DevTools/compile_testing_protos.sh                              \
-  objectivec/DevTools/full_mac_build.sh                                      \
-  objectivec/DevTools/pddm.py                                                \
-  objectivec/DevTools/pddm_tests.py                                          \
-  objectivec/generate_well_known_types.sh                                    \
-  objectivec/google/protobuf/Any.pbobjc.h                                    \
-  objectivec/google/protobuf/Any.pbobjc.m                                    \
-  objectivec/google/protobuf/Api.pbobjc.h                                    \
-  objectivec/google/protobuf/Api.pbobjc.m                                    \
-  objectivec/google/protobuf/Duration.pbobjc.h                               \
-  objectivec/google/protobuf/Duration.pbobjc.m                               \
-  objectivec/google/protobuf/Empty.pbobjc.h                                  \
-  objectivec/google/protobuf/Empty.pbobjc.m                                  \
-  objectivec/google/protobuf/FieldMask.pbobjc.h                              \
-  objectivec/google/protobuf/FieldMask.pbobjc.m                              \
-  objectivec/google/protobuf/SourceContext.pbobjc.h                          \
-  objectivec/google/protobuf/SourceContext.pbobjc.m                          \
-  objectivec/google/protobuf/Struct.pbobjc.h                                 \
-  objectivec/google/protobuf/Struct.pbobjc.m                                 \
-  objectivec/google/protobuf/Timestamp.pbobjc.h                              \
-  objectivec/google/protobuf/Timestamp.pbobjc.m                              \
-  objectivec/google/protobuf/Type.pbobjc.h                                   \
-  objectivec/google/protobuf/Type.pbobjc.m                                   \
-  objectivec/google/protobuf/Wrappers.pbobjc.h                               \
-  objectivec/google/protobuf/Wrappers.pbobjc.m                               \
-  objectivec/GPBArray.h                                                      \
-  objectivec/GPBArray.m                                                      \
-  objectivec/GPBArray_PackagePrivate.h                                       \
-  objectivec/GPBBootstrap.h                                                  \
-  objectivec/GPBCodedInputStream.h                                           \
-  objectivec/GPBCodedInputStream.m                                           \
-  objectivec/GPBCodedInputStream_PackagePrivate.h                            \
-  objectivec/GPBCodedOutputStream.h                                          \
-  objectivec/GPBCodedOutputStream.m                                          \
-  objectivec/GPBCodedOutputStream_PackagePrivate.h                           \
-  objectivec/GPBDescriptor.h                                                 \
-  objectivec/GPBDescriptor.m                                                 \
-  objectivec/GPBDescriptor_PackagePrivate.h                                  \
-  objectivec/GPBDictionary.h                                                 \
-  objectivec/GPBDictionary.m                                                 \
-  objectivec/GPBDictionary_PackagePrivate.h                                  \
-  objectivec/GPBExtensionInternals.h                                         \
-  objectivec/GPBExtensionInternals.m                                         \
-  objectivec/GPBExtensionRegistry.h                                          \
-  objectivec/GPBExtensionRegistry.m                                          \
-  objectivec/GPBMessage.h                                                    \
-  objectivec/GPBMessage.m                                                    \
-  objectivec/GPBMessage_PackagePrivate.h                                     \
-  objectivec/GPBProtocolBuffers.h                                            \
-  objectivec/GPBProtocolBuffers.m                                            \
-  objectivec/GPBProtocolBuffers_RuntimeSupport.h                             \
-  objectivec/GPBRootObject.h                                                 \
-  objectivec/GPBRootObject.m                                                 \
-  objectivec/GPBRootObject_PackagePrivate.h                                  \
-  objectivec/GPBRuntimeTypes.h                                               \
-  objectivec/GPBUnknownField.h                                               \
-  objectivec/GPBUnknownField.m                                               \
-  objectivec/GPBUnknownField_PackagePrivate.h                                \
-  objectivec/GPBUnknownFieldSet.h                                            \
-  objectivec/GPBUnknownFieldSet.m                                            \
-  objectivec/GPBUnknownFieldSet_PackagePrivate.h                             \
-  objectivec/GPBUtilities.h                                                  \
-  objectivec/GPBUtilities.m                                                  \
-  objectivec/GPBUtilities_PackagePrivate.h                                   \
-  objectivec/GPBWellKnownTypes.h                                             \
-  objectivec/GPBWellKnownTypes.m                                             \
-  objectivec/GPBWireFormat.h                                                 \
-  objectivec/GPBWireFormat.m                                                 \
-  objectivec/ProtocolBuffers_iOS.xcodeproj/project.pbxproj                   \
-  objectivec/ProtocolBuffers_iOS.xcodeproj/project.xcworkspace/contents.xcworkspacedata \
-  objectivec/ProtocolBuffers_iOS.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings \
-  objectivec/ProtocolBuffers_iOS.xcodeproj/xcshareddata/xcschemes/PerformanceTests.xcscheme \
-  objectivec/ProtocolBuffers_iOS.xcodeproj/xcshareddata/xcschemes/ProtocolBuffers.xcscheme \
-  objectivec/ProtocolBuffers_OSX.xcodeproj/project.pbxproj                   \
-  objectivec/ProtocolBuffers_OSX.xcodeproj/project.xcworkspace/contents.xcworkspacedata \
-  objectivec/ProtocolBuffers_OSX.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings \
-  objectivec/ProtocolBuffers_OSX.xcodeproj/xcshareddata/xcschemes/PerformanceTests.xcscheme \
-  objectivec/ProtocolBuffers_OSX.xcodeproj/xcshareddata/xcschemes/ProtocolBuffers.xcscheme \
-  objectivec/README.md                                                       \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester.xcodeproj/project.pbxproj \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester.xcodeproj/project.xcworkspace/contents.xcworkspacedata \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester.xcodeproj/xcshareddata/xcschemes/OSXCocoaPodsTester.xcscheme \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester/AppDelegate.h \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester/AppDelegate.m \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester/Assets.xcassets/AppIcon.appiconset/Contents.json \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester/Base.lproj/MainMenu.xib \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester/Info.plist \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/OSXCocoaPodsTester/main.m    \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/Podfile-framework            \
-  objectivec/Tests/CocoaPods/OSXCocoaPodsTester/Podfile-static               \
-  objectivec/Tests/CocoaPods/README.md                                       \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/Podfile-framework            \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/Podfile-static               \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester.xcodeproj/project.pbxproj \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester.xcodeproj/project.xcworkspace/contents.xcworkspacedata \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester.xcodeproj/xcshareddata/xcschemes/iOSCocoaPodsTester.xcscheme \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/AppDelegate.h \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/AppDelegate.m \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/Assets.xcassets/AppIcon.appiconset/Contents.json \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/Base.lproj/LaunchScreen.storyboard \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/Base.lproj/Main.storyboard \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/Info.plist \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/ViewController.h \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/ViewController.m \
-  objectivec/Tests/CocoaPods/iOSCocoaPodsTester/iOSCocoaPodsTester/main.m    \
-  objectivec/Tests/CocoaPods/run_tests.sh                                    \
-  objectivec/Tests/golden_message                                            \
-  objectivec/Tests/golden_packed_fields_message                              \
-  objectivec/Tests/GPBARCUnittestProtos.m                                    \
-  objectivec/Tests/GPBArrayTests.m                                           \
-  objectivec/Tests/GPBCodedInputStreamTests.m                                \
-  objectivec/Tests/GPBCodedOuputStreamTests.m                                \
-  objectivec/Tests/GPBConcurrencyTests.m                                     \
-  objectivec/Tests/GPBDescriptorTests.m                                      \
-  objectivec/Tests/GPBDictionaryTests+Bool.m                                 \
-  objectivec/Tests/GPBDictionaryTests+Int32.m                                \
-  objectivec/Tests/GPBDictionaryTests+Int64.m                                \
-  objectivec/Tests/GPBDictionaryTests+String.m                               \
-  objectivec/Tests/GPBDictionaryTests+UInt32.m                               \
-  objectivec/Tests/GPBDictionaryTests+UInt64.m                               \
-  objectivec/Tests/GPBDictionaryTests.pddm                                   \
-  objectivec/Tests/GPBMessageTests+Merge.m                                   \
-  objectivec/Tests/GPBMessageTests+Runtime.m                                 \
-  objectivec/Tests/GPBMessageTests+Serialization.m                           \
-  objectivec/Tests/GPBMessageTests.m                                         \
-  objectivec/Tests/GPBObjectiveCPlusPlusTest.mm                              \
-  objectivec/Tests/GPBPerfTests.m                                            \
-  objectivec/Tests/GPBSwiftTests.swift                                       \
-  objectivec/Tests/GPBTestUtilities.h                                        \
-  objectivec/Tests/GPBTestUtilities.m                                        \
-  objectivec/Tests/GPBUnittestProtos.m                                       \
-  objectivec/Tests/GPBUnittestProtos2.m                                      \
-  objectivec/Tests/GPBUnknownFieldSetTest.m                                  \
-  objectivec/Tests/GPBUtilitiesTests.m                                       \
-  objectivec/Tests/GPBWellKnownTypesTest.m                                   \
-  objectivec/Tests/GPBWireFormatTests.m                                      \
-  objectivec/Tests/iOSTestHarness/AppDelegate.m                              \
-  objectivec/Tests/iOSTestHarness/en.lproj/InfoPlist.strings                 \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/Contents.json      \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPad6.png          \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPad6_2x.png       \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPad7.png          \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPad7_2x.png       \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPhone6.png        \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPhone6_2x.png     \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPhone7_2x.png     \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/AppIcon.appiconset/iPhone7_3x.png     \
-  objectivec/Tests/iOSTestHarness/Images.xcassets/LaunchImage.launchimage/Contents.json \
-  objectivec/Tests/iOSTestHarness/Info.plist                                  \
-  objectivec/Tests/iOSTestHarness/LaunchScreen.xib                            \
-  objectivec/Tests/text_format_map_unittest_data.txt                          \
-  objectivec/Tests/text_format_unittest_data.txt                              \
-  objectivec/Tests/unittest_cycle.proto                                       \
-  objectivec/Tests/unittest_extension_chain_a.proto                           \
-  objectivec/Tests/unittest_extension_chain_b.proto                           \
-  objectivec/Tests/unittest_extension_chain_c.proto                           \
-  objectivec/Tests/unittest_extension_chain_d.proto                           \
-  objectivec/Tests/unittest_extension_chain_e.proto                           \
-  objectivec/Tests/unittest_extension_chain_f.proto                           \
-  objectivec/Tests/unittest_extension_chain_g.proto                           \
-  objectivec/Tests/unittest_objc.proto                                        \
-  objectivec/Tests/unittest_objc_startup.proto                                \
-  objectivec/Tests/unittest_runtime_proto2.proto                              \
-  objectivec/Tests/unittest_runtime_proto3.proto                              \
-  objectivec/Tests/UnitTests-Bridging-Header.h                                \
-  objectivec/Tests/UnitTests-Info.plist                                       \
-  Protobuf.podspec
+EXTRA_SOURCE=
+noinst_HEADERS=
+noinst_PROGRAMS=
+EXTRA_PROGRAMS=
+CLEANFILES=
+DISTCLEANFILES=
+BUILT_SOURCES =
+include include/include.am
+include sample/include.am
+include test/include.am
 
-php_EXTRA_DIST=                                              \
-  php/src/phpdoc.dist.xml                                    \
-  php/src/Google/Protobuf/Internal/DescriptorPool.php        \
-  php/src/Google/Protobuf/Internal/OneofField.php            \
-  php/src/Google/Protobuf/Internal/MapEntry.php              \
-  php/src/Google/Protobuf/Internal/Type.php                  \
-  php/src/Google/Protobuf/Internal/InputStream.php           \
-  php/src/Google/Protobuf/Internal/OutputStream.php          \
-  php/src/Google/Protobuf/Internal/MessageBuilderContext.php \
-  php/src/Google/Protobuf/Internal/MapField.php              \
-  php/src/Google/Protobuf/Internal/RepeatedField.php         \
-  php/src/Google/Protobuf/Internal/Message.php               \
-  php/src/Google/Protobuf/Internal/GPBWire.php               \
-  php/src/Google/Protobuf/Internal/GPBType.php               \
-  php/src/Google/Protobuf/Internal/GPBLabel.php              \
-  php/src/Google/Protobuf/Internal/EnumBuilderContext.php    \
-  php/src/Google/Protobuf/Internal/GPBUtil.php               \
-  php/src/Google/Protobuf/descriptor_internal.pb.php         \
-  php/src/Google/Protobuf/descriptor.php                     \
-  php/tests/encode_decode_test.php                           \
-  php/tests/test.sh                                          \
-  php/tests/generated_class_test.php                         \
-  php/tests/array_test.php                                   \
-  php/tests/php_implementation_test.php                      \
-  php/tests/test_include.proto                               \
-  php/tests/test_include.pb.php                              \
-  php/tests/map_field_test.php                               \
-  php/tests/test_base.php                                    \
-  php/tests/test_util.php                                    \
-  php/tests/test.proto                                       \
-  php/tests/test.pb.php                                      \
-  php/tests/memory_leak_test.php                             \
-  php/README.md                                              \
-  php/ext/google/protobuf/utf8.h                             \
-  php/ext/google/protobuf/message.c                          \
-  php/ext/google/protobuf/utf8.c                             \
-  php/ext/google/protobuf/package.xml                        \
-  php/ext/google/protobuf/upb.h                              \
-  php/ext/google/protobuf/array.c                            \
-  php/ext/google/protobuf/encode_decode.c                    \
-  php/ext/google/protobuf/protobuf.h                         \
-  php/ext/google/protobuf/type_check.c                       \
-  php/ext/google/protobuf/def.c                              \
-  php/ext/google/protobuf/storage.c                          \
-  php/ext/google/protobuf/map.c                              \
-  php/ext/google/protobuf/config.m4                          \
-  php/ext/google/protobuf/upb.c                              \
-  php/ext/google/protobuf/protobuf.c                         \
-  phpunit.xml                                                \
-  composer.json
+if BUILD_WIN32
 
-python_EXTRA_DIST=                                                           \
-  python/MANIFEST.in                                                         \
-  python/google/__init__.py                                                  \
-  python/google/protobuf/__init__.py                                         \
-  python/google/protobuf/descriptor.py                                       \
-  python/google/protobuf/descriptor_database.py                              \
-  python/google/protobuf/descriptor_pool.py                                  \
-  python/google/protobuf/internal/__init__.py                                \
-  python/google/protobuf/internal/_parameterized.py                          \
-  python/google/protobuf/internal/any_test.proto                             \
-  python/google/protobuf/internal/any_test.proto                             \
-  python/google/protobuf/internal/api_implementation.cc                      \
-  python/google/protobuf/internal/api_implementation.py                      \
-  python/google/protobuf/internal/containers.py                              \
-  python/google/protobuf/internal/decoder.py                                 \
-  python/google/protobuf/internal/descriptor_database_test.py                \
-  python/google/protobuf/internal/descriptor_pool_test.py                    \
-  python/google/protobuf/internal/descriptor_pool_test1.proto                \
-  python/google/protobuf/internal/descriptor_pool_test2.proto                \
-  python/google/protobuf/internal/descriptor_test.py                         \
-  python/google/protobuf/internal/encoder.py                                 \
-  python/google/protobuf/internal/enum_type_wrapper.py                       \
-  python/google/protobuf/internal/factory_test1.proto                        \
-  python/google/protobuf/internal/factory_test2.proto                        \
-  python/google/protobuf/internal/file_options_test.proto                    \
-  python/google/protobuf/internal/generator_test.py                          \
-  python/google/protobuf/internal/import_test_package/__init__.py            \
-  python/google/protobuf/internal/import_test_package/inner.proto            \
-  python/google/protobuf/internal/import_test_package/outer.proto            \
-  python/google/protobuf/internal/json_format_test.py                        \
-  python/google/protobuf/internal/message_factory_test.py                    \
-  python/google/protobuf/internal/message_listener.py                        \
-  python/google/protobuf/internal/message_set_extensions.proto               \
-  python/google/protobuf/internal/message_test.py                            \
-  python/google/protobuf/internal/missing_enum_values.proto                  \
-  python/google/protobuf/internal/more_extensions.proto                      \
-  python/google/protobuf/internal/more_extensions_dynamic.proto              \
-  python/google/protobuf/internal/more_messages.proto                        \
-  python/google/protobuf/internal/packed_field_test.proto                    \
-  python/google/protobuf/internal/proto_builder_test.py                      \
-  python/google/protobuf/internal/python_message.py                          \
-  python/google/protobuf/internal/reflection_test.py                         \
-  python/google/protobuf/internal/service_reflection_test.py                 \
-  python/google/protobuf/internal/symbol_database_test.py                    \
-  python/google/protobuf/internal/test_bad_identifiers.proto                 \
-  python/google/protobuf/internal/test_util.py                               \
-  python/google/protobuf/internal/testing_refleaks.py                        \
-  python/google/protobuf/internal/text_encoding_test.py                      \
-  python/google/protobuf/internal/text_format_test.py                        \
-  python/google/protobuf/internal/type_checkers.py                           \
-  python/google/protobuf/internal/unknown_fields_test.py                     \
-  python/google/protobuf/internal/well_known_types.py                        \
-  python/google/protobuf/internal/well_known_types.py                        \
-  python/google/protobuf/internal/well_known_types_test.py                   \
-  python/google/protobuf/internal/well_known_types_test.py                   \
-  python/google/protobuf/internal/wire_format.py                             \
-  python/google/protobuf/internal/wire_format_test.py                        \
-  python/google/protobuf/json_format.py                                      \
-  python/google/protobuf/message.py                                          \
-  python/google/protobuf/message_factory.py                                  \
-  python/google/protobuf/proto_builder.py                                    \
-  python/google/protobuf/pyext/README                                        \
-  python/google/protobuf/pyext/__init__.py                                   \
-  python/google/protobuf/pyext/cpp_message.py                                \
-  python/google/protobuf/pyext/descriptor.cc                                 \
-  python/google/protobuf/pyext/descriptor.h                                  \
-  python/google/protobuf/pyext/descriptor_containers.cc                      \
-  python/google/protobuf/pyext/descriptor_containers.h                       \
-  python/google/protobuf/pyext/descriptor_database.cc                        \
-  python/google/protobuf/pyext/descriptor_database.h                         \
-  python/google/protobuf/pyext/descriptor_pool.cc                            \
-  python/google/protobuf/pyext/descriptor_pool.h                             \
-  python/google/protobuf/pyext/extension_dict.cc                             \
-  python/google/protobuf/pyext/extension_dict.h                              \
-  python/google/protobuf/pyext/map_container.cc                              \
-  python/google/protobuf/pyext/map_container.h                               \
-  python/google/protobuf/pyext/message.cc                                    \
-  python/google/protobuf/pyext/message.h                                     \
-  python/google/protobuf/pyext/message_factory.cc                            \
-  python/google/protobuf/pyext/message_factory.h                             \
-  python/google/protobuf/pyext/message_module.cc                             \
-  python/google/protobuf/pyext/proto2_api_test.proto                         \
-  python/google/protobuf/pyext/python.proto                                  \
-  python/google/protobuf/pyext/python_protobuf.h                             \
-  python/google/protobuf/pyext/repeated_composite_container.cc               \
-  python/google/protobuf/pyext/repeated_composite_container.h                \
-  python/google/protobuf/pyext/repeated_scalar_container.cc                  \
-  python/google/protobuf/pyext/repeated_scalar_container.h                   \
-  python/google/protobuf/pyext/scoped_pyobject_ptr.h                         \
-  python/google/protobuf/reflection.py                                       \
-  python/google/protobuf/service.py                                          \
-  python/google/protobuf/service_reflection.py                               \
-  python/google/protobuf/symbol_database.py                                  \
-  python/google/protobuf/text_encoding.py                                    \
-  python/google/protobuf/text_format.py                                      \
-  python/mox.py                                                              \
-  python/setup.cfg                                                           \
-  python/setup.py                                                            \
-  python/stubout.py                                                          \
-  python/tox.ini                                                             \
-  python/README.md
+SYS_LIBS = -lws2_32 -lshell32 -ladvapi32
+SYS_SRC = win32select.c evthread_win32.c buffer_iocp.c event_iocp.c \
+	bufferevent_async.c
+SYS_INCLUDES = -IWIN32-Code -IWIN32-Code/nmake
 
-ruby_EXTRA_DIST=                                                             \
-  ruby/Gemfile                                                               \
-  ruby/Gemfile.lock                                                          \
-  ruby/.gitignore                                                            \
-  ruby/README.md                                                             \
-  ruby/Rakefile                                                              \
-  ruby/ext/google/protobuf_c/defs.c                                          \
-  ruby/ext/google/protobuf_c/encode_decode.c                                 \
-  ruby/ext/google/protobuf_c/extconf.rb                                      \
-  ruby/ext/google/protobuf_c/map.c                                           \
-  ruby/ext/google/protobuf_c/message.c                                       \
-  ruby/ext/google/protobuf_c/protobuf.c                                      \
-  ruby/ext/google/protobuf_c/protobuf.h                                      \
-  ruby/ext/google/protobuf_c/repeated_field.c                                \
-  ruby/ext/google/protobuf_c/storage.c                                       \
-  ruby/ext/google/protobuf_c/upb.c                                           \
-  ruby/ext/google/protobuf_c/upb.h                                           \
-  ruby/google-protobuf.gemspec                                               \
-  ruby/lib/google/protobuf/message_exts.rb                                   \
-  ruby/lib/google/protobuf/repeated_field.rb                                 \
-  ruby/lib/google/protobuf/well_known_types.rb                               \
-  ruby/lib/google/protobuf.rb                                                \
-  ruby/pom.xml                                                               \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyBuilder.java              \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyDescriptor.java           \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyDescriptorPool.java       \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyEnumBuilderContext.java   \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyEnumDescriptor.java       \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyEnum.java                 \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyFieldDescriptor.java      \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyMap.java                  \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyMessageBuilderContext.java \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyMessage.java              \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyOneofBuilderContext.java  \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyOneofDescriptor.java      \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyProtobuf.java             \
-  ruby/src/main/java/com/google/protobuf/jruby/RubyRepeatedField.java        \
-  ruby/src/main/java/com/google/protobuf/jruby/SentinelOuterClass.java       \
-  ruby/src/main/java/com/google/protobuf/jruby/Utils.java                    \
-  ruby/src/main/java/google/ProtobufJavaService.java                         \
-  ruby/src/main/sentinel.proto                                               \
-  ruby/tests/basic.rb                                                        \
-  ruby/tests/repeated_field_test.rb                                          \
-  ruby/tests/stress.rb                                                       \
-  ruby/tests/generated_code.proto                                            \
-  ruby/tests/test_import.proto                                               \
-  ruby/tests/generated_code_test.rb                                          \
-  ruby/tests/well_known_types_test.rb                                        \
-  ruby/travis-test.sh
+else
 
-js_EXTRA_DIST=                              \
-  js/README.md                              \
-  js/binary/arith.js                        \
-  js/binary/arith_test.js                   \
-  js/binary/constants.js                    \
-  js/binary/decoder.js                      \
-  js/binary/decoder_test.js                 \
-  js/binary/encoder.js                      \
-  js/binary/proto_test.js                   \
-  js/binary/reader.js                       \
-  js/binary/reader_test.js                  \
-  js/binary/utils.js                        \
-  js/binary/utils_test.js                   \
-  js/binary/writer.js                       \
-  js/binary/writer_test.js                  \
-  js/commonjs/export.js                     \
-  js/commonjs/export_asserts.js             \
-  js/commonjs/export_testdeps.js            \
-  js/commonjs/import_test.js                \
-  js/commonjs/jasmine.json                  \
-  js/commonjs/rewrite_tests_for_commonjs.js \
-  js/commonjs/test6/test6.proto             \
-  js/commonjs/test7/test7.proto             \
-  js/data.proto                             \
-  js/debug.js                               \
-  js/debug_test.js                          \
-  js/gulpfile.js                            \
-  js/jasmine.json                           \
-  js/map.js                                 \
-  js/maps_test.js                           \
-  js/message.js                             \
-  js/message_test.js                        \
-  js/node_loader.js                         \
-  js/package.json                           \
-  js/proto3_test.js                         \
-  js/proto3_test.proto                      \
-  js/test.proto                             \
-  js/test2.proto                            \
-  js/test3.proto                            \
-  js/test4.proto                            \
-  js/test5.proto                            \
-  js/test_bootstrap.js                      \
-  js/testbinary.proto                       \
-  js/testempty.proto
+SYS_LIBS =
+SYS_SRC =
+SYS_INCLUDES =
 
-all_EXTRA_DIST=$(csharp_EXTRA_DIST) $(java_EXTRA_DIST) $(javanano_EXTRA_DIST) $(objectivec_EXTRA_DIST) $(php_EXTRA_DIST) $(python_EXTRA_DIST) $(ruby_EXTRA_DIST) $(js_EXTRA_DIST)
+endif
 
-EXTRA_DIST = $(@DIST_LANG@_EXTRA_DIST)   \
-  autogen.sh                             \
-  generate_descriptor_proto.sh           \
-  README.md                              \
-  LICENSE                                \
-  CONTRIBUTORS.txt                       \
-  CHANGES.txt                            \
-  update_file_lists.sh                   \
-  BUILD                                  \
-  gmock.BUILD                            \
-  WORKSPACE                              \
-  cmake/CMakeLists.txt                   \
-  cmake/README.md                        \
-  cmake/examples.cmake                   \
-  cmake/extract_includes.bat.in          \
-  cmake/install.cmake                    \
-  cmake/libprotobuf.cmake                \
-  cmake/libprotobuf-lite.cmake           \
-  cmake/libprotoc.cmake                  \
-  cmake/protobuf-config-version.cmake.in \
-  cmake/protobuf-config.cmake.in         \
-  cmake/protobuf-module.cmake.in         \
-  cmake/protobuf-options.cmake           \
-  cmake/protoc.cmake                     \
-  cmake/tests.cmake                      \
-  editors/README.txt                     \
-  editors/proto.vim                      \
-  editors/protobuf-mode.el               \
-  examples/CMakeLists.txt                \
-  examples/README.txt                    \
-  examples/Makefile                      \
-  examples/addressbook.proto             \
-  examples/add_person.cc                 \
-  examples/add_person.go                 \
-  examples/add_person_test.go            \
-  examples/list_people.cc                \
-  examples/list_people.go                \
-  examples/AddPerson.java                \
-  examples/CMakeLists.txt                \
-  examples/ListPeople.java               \
-  examples/add_person.py                 \
-  examples/list_people.py                \
-  examples/list_people_test.go           \
-  protobuf.bzl                           \
-  six.BUILD                              \
-  util/python/BUILD
+if STRLCPY_IMPL
+SYS_SRC += strlcpy.c
+endif
+if SELECT_BACKEND
+SYS_SRC += select.c
+endif
+if POLL_BACKEND
+SYS_SRC += poll.c
+endif
+if DEVPOLL_BACKEND
+SYS_SRC += devpoll.c
+endif
+if KQUEUE_BACKEND
+SYS_SRC += kqueue.c
+endif
+if EPOLL_BACKEND
+SYS_SRC += epoll.c
+endif
+if EVPORT_BACKEND
+SYS_SRC += evport.c
+endif
+if SIGNAL_SUPPORT
+SYS_SRC += signal.c
+endif
 
-# Deletes all the files generated by autogen.sh.
-MAINTAINERCLEANFILES =   \
-  aclocal.m4             \
-  ar-lib                 \
-  config.guess           \
-  config.sub             \
-  configure              \
-  depcomp                \
-  install-sh             \
-  ltmain.sh              \
-  Makefile.in            \
-  missing                \
-  mkinstalldirs          \
-  config.h.in            \
-  stamp.h.in             \
-  m4/ltsugar.m4          \
-  m4/libtool.m4          \
-  m4/ltversion.m4        \
-  m4/lt~obsolete.m4      \
-  m4/ltoptions.m4
+BUILT_SOURCES += include/event2/event-config.h
+
+include/event2/event-config.h: config.h make-event-config.sed
+	$(AM_V_GEN)test -d include/event2 || $(MKDIR_P) include/event2
+	$(AM_V_at)$(SED) -f $(srcdir)/make-event-config.sed < config.h > $@T
+	$(AM_V_at)mv -f $@T $@
+
+CORE_SRC =					\
+	buffer.c				\
+	bufferevent.c				\
+	bufferevent_filter.c			\
+	bufferevent_pair.c			\
+	bufferevent_ratelim.c			\
+	bufferevent_sock.c			\
+	event.c					\
+	evmap.c					\
+	evthread.c				\
+	evutil.c				\
+	evutil_rand.c				\
+	evutil_time.c				\
+	listener.c				\
+	log.c					\
+	$(SYS_SRC)
+
+EXTRAS_SRC =					\
+	evdns.c					\
+	event_tagging.c				\
+	evrpc.c					\
+	http.c
+
+if BUILD_WITH_NO_UNDEFINED
+NO_UNDEFINED = -no-undefined
+MAYBE_CORE = libevent_core.la
+else
+NO_UNDEFINED =
+MAYBE_CORE =
+endif
+
+GENERIC_LDFLAGS = -version-info $(VERSION_INFO) $(RELEASE) $(NO_UNDEFINED)
+
+libevent_la_SOURCES = $(CORE_SRC) $(EXTRAS_SRC)
+libevent_la_LIBADD = @LTLIBOBJS@ $(SYS_LIBS)
+libevent_la_LDFLAGS = $(GENERIC_LDFLAGS)
+
+libevent_core_la_SOURCES = $(CORE_SRC)
+libevent_core_la_LIBADD = @LTLIBOBJS@ $(SYS_LIBS)
+libevent_core_la_LDFLAGS = $(GENERIC_LDFLAGS)
+
+if PTHREADS
+libevent_pthreads_la_SOURCES = evthread_pthread.c
+libevent_pthreads_la_LIBADD = $(MAYBE_CORE)
+libevent_pthreads_la_LDFLAGS = $(GENERIC_LDFLAGS)
+endif
+
+libevent_extra_la_SOURCES = $(EXTRAS_SRC)
+libevent_extra_la_LIBADD = $(MAYBE_CORE) $(SYS_LIBS)
+libevent_extra_la_LDFLAGS = $(GENERIC_LDFLAGS)
+
+if OPENSSL
+libevent_openssl_la_SOURCES = bufferevent_openssl.c
+libevent_openssl_la_LIBADD = $(MAYBE_CORE) $(OPENSSL_LIBS)
+libevent_openssl_la_LDFLAGS = $(GENERIC_LDFLAGS)
+libevent_openssl_la_CPPFLAGS = $(AM_CPPFLAGS) $(OPENSSL_INCS)
+endif
+
+noinst_HEADERS +=				\
+	WIN32-Code/nmake/evconfig-private.h	\
+	WIN32-Code/nmake/event2/event-config.h	\
+	WIN32-Code/tree.h			\
+	bufferevent-internal.h			\
+	changelist-internal.h			\
+	compat/sys/queue.h			\
+	defer-internal.h			\
+	epolltable-internal.h			\
+	evbuffer-internal.h			\
+	evconfig-private.h			\
+	event-internal.h			\
+	evmap-internal.h			\
+	evrpc-internal.h			\
+	evsignal-internal.h			\
+	evthread-internal.h			\
+	ht-internal.h				\
+	http-internal.h				\
+	iocp-internal.h				\
+	ipv6-internal.h				\
+	kqueue-internal.h			\
+	log-internal.h				\
+	minheap-internal.h			\
+	mm-internal.h				\
+	ratelim-internal.h			\
+	ratelim-internal.h			\
+	strlcpy-internal.h			\
+	time-internal.h				\
+	util-internal.h
+
+EVENT1_HDRS = \
+	include/evdns.h \
+	include/event.h \
+	include/evhttp.h \
+	include/evrpc.h \
+	include/evutil.h
+
+if INSTALL_LIBEVENT
+include_HEADERS = $(EVENT1_HDRS)
+else
+noinst_HEADERS += $(EVENT1_HDRS)
+endif
+
+AM_CPPFLAGS = -I$(srcdir)/compat -I$(srcdir)/include -I./include $(SYS_INCLUDES)
+
+verify: check
+
+doxygen: FORCE
+	doxygen $(srcdir)/Doxyfile
+FORCE:
+
+DISTCLEANFILES += *~ libevent.pc ./include/event2/event-config.h
+
