@@ -92,15 +92,6 @@ conv_swap2bytes(const UChar* s, const UChar* end, UChar* conv)
   }
 }
 
-void congratulateUser(const char *userName)
-{
-	char buffer[80];
-
-	// BAD: even though snprintf is used, this could overflow the buffer
-	// because the size specified is too large.
-	snprintf(buffer, 256, "Congratulations, %s!", userName);
-}
-
 static int
 conv_encoding(OnigEncoding from, OnigEncoding to, const UChar* s, const UChar* end,
               UChar** conv, UChar** conv_end)
