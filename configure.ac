@@ -1,189 +1,73 @@
-## Process this file with autoconf to produce configure.
-## In general, the safest way to proceed is to run ./autogen.sh
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(onigmo, 6.2.0)
 
-AC_PREREQ(2.59)
-
-# Note:  If you change the version, you must also update it in:
-# * Protobuf.podspec
-# * csharp/Google.Protobuf.Tools.nuspec
-# * csharp/src/*/AssemblyInfo.cs
-# * csharp/src/Google.Protobuf/Google.Protobuf.nuspec
-# * java/*/pom.xml
-# * python/google/protobuf/__init__.py
-# * protoc-artifacts/pom.xml
-# * src/google/protobuf/stubs/common.h
-# * src/Makefile.am (Update -version-info for LDFLAGS if needed)
-#
-# In the SVN trunk, the version should always be the next anticipated release
-# version with the "-pre" suffix.  (We used to use "-SNAPSHOT" but this pushed
-# the size of one file name in the dist tarfile over the 99-char limit.)
-AC_INIT([Protocol Buffers],[3.1.0],[protobuf@googlegroups.com],[protobuf])
-
-AM_MAINTAINER_MODE([enable])
-
-AC_CONFIG_SRCDIR(src/google/protobuf/message.cc)
-# The config file is generated but not used by the source code, since we only
-# need very few of them, e.g. HAVE_PTHREAD and HAVE_ZLIB. Those macros are
-# passed down in CXXFLAGS manually in src/Makefile.am
-AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_ARG_VAR(DIST_LANG, [language to include in the distribution package (i.e., make dist)])
-case "$DIST_LANG" in
-  "") DIST_LANG=all ;;
-  all | cpp | csharp | java | python | javanano | objectivec | ruby | js | php) ;;
-  *) AC_MSG_FAILURE([unknown language: $DIST_LANG]) ;;
-esac
-AC_SUBST(DIST_LANG)
+AM_INIT_AUTOMAKE([foreign subdir-objects])
+AC_CONFIG_HEADER(config.h)
 
-# autoconf's default CXXFLAGS are usually "-g -O2".  These aren't necessarily
-# the best choice for libprotobuf.
-AS_IF([test "x${ac_cv_env_CFLAGS_set}" = "x"],
-      [CFLAGS=""])
-AS_IF([test "x${ac_cv_env_CXXFLAGS_set}" = "x"],
-      [CXXFLAGS=""])
 
-AC_CANONICAL_TARGET
+dnl default value for RUBYDIR
+RUBYDIR=".."
+AC_ARG_WITH(rubydir,
+	[  --with-rubydir=RUBYDIR  specify value for RUBYDIR (default ..)],
+	[ RUBYDIR=$withval ])
+AC_SUBST(RUBYDIR)
 
-AM_INIT_AUTOMAKE([1.9 tar-ustar subdir-objects])
+dnl default value for STATISTICS
+STATISTICS=""
+AC_ARG_WITH(statistics,
+	[  --with-statistics       take matching time statistical data],
+	[ STATISTICS=-DONIG_DEBUG_STATISTICS ])
+AC_SUBST(STATISTICS)
 
-AC_ARG_WITH([zlib],
-  [AS_HELP_STRING([--with-zlib],
-    [include classes for streaming compressed data in and out @<:@default=check@:>@])],
-  [],[with_zlib=check])
+dnl check for COMBINATION_EXPLOSION
+AC_ARG_ENABLE(combination-explosion-check,
+	[  --enable-combination-explosion-check   enable combination explosion check],
+	[comb_expl_check=$enableval])
+if test "${comb_expl_check}" = yes; then
+  AC_DEFINE(USE_COMBINATION_EXPLOSION_CHECK,1,[Define if combination explosion check])
+fi
 
-AC_ARG_WITH([protoc],
-  [AS_HELP_STRING([--with-protoc=COMMAND],
-    [use the given protoc command instead of building a new one when building tests (useful for cross-compiling)])],
-  [],[with_protoc=no])
+dnl check for CRNL_AS_LINE_TERMINATOR
+AC_ARG_ENABLE(crnl-as-line-terminator,
+	[  --enable-crnl-as-line-terminator   enable CR+NL as line terminator],
+	[crnl_as_line_terminator=$enableval])
+if test "${crnl_as_line_terminator}" = yes; then
+  AC_DEFINE(USE_CRNL_AS_LINE_TERMINATOR,1,[Define if enable CR+NL as line terminator])
+fi
 
-# Checks for programs.
+
+dnl Checks for programs.
 AC_PROG_CC
-AC_PROG_CXX
-AC_LANG([C++])
-ACX_USE_SYSTEM_EXTENSIONS
-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
-AM_CONDITIONAL(GCC, test "$GCC" = yes)   # let the Makefile know if we're gcc
-AC_PROG_OBJC
-
-# test_util.cc takes forever to compile with GCC and optimization turned on.
-AC_MSG_CHECKING([C++ compiler flags...])
-AS_IF([test "x${ac_cv_env_CXXFLAGS_set}" = "x"],[
-  AS_IF([test "$GCC" = "yes"],[
-    PROTOBUF_OPT_FLAG="-O2"
-    CXXFLAGS="${CXXFLAGS} -g"
-  ])
-
-  # Protocol Buffers contains several checks that are intended to be used only
-  # for debugging and which might hurt performance.  Most users are probably
-  # end users who don't want these checks, so add -DNDEBUG by default.
-  CXXFLAGS="$CXXFLAGS -DNDEBUG"
-
-  AC_MSG_RESULT([use default: $PROTOBUF_OPT_FLAG $CXXFLAGS])
-],[
-  AC_MSG_RESULT([use user-supplied: $CXXFLAGS])
-])
-
-AC_SUBST(PROTOBUF_OPT_FLAG)
-
-ACX_CHECK_SUNCC
-
-# Have to do libtool after SUNCC, other wise it "helpfully" adds Crun Cstd
-# to the link
 AC_PROG_LIBTOOL
+AM_PROG_CC_C_O
+LTVERSION="6:5:0"
+AC_SUBST(LTVERSION)
 
-# Checks for header files.
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+
+AC_CHECK_PROGS(python_prog, python3 python python2)
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADERS([fcntl.h inttypes.h limits.h stdlib.h unistd.h])
+AC_CHECK_HEADERS(sys/time.h unistd.h sys/times.h stdint.h)
 
-# Checks for library functions.
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(short, 2)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF([void*])
+AC_CHECK_SIZEOF([long long])
+AC_C_CONST
+AC_HEADER_TIME
+
+dnl Checks for library functions.
+AC_FUNC_ALLOCA
 AC_FUNC_MEMCMP
-AC_FUNC_STRTOD
-AC_CHECK_FUNCS([ftruncate memset mkdir strchr strerror strtol])
 
-# Check for zlib.
-HAVE_ZLIB=0
-AS_IF([test "$with_zlib" != no], [
-  AC_MSG_CHECKING([zlib version])
 
-  # First check the zlib header version.
-  AC_COMPILE_IFELSE(
-    [AC_LANG_PROGRAM([[
-        #include <zlib.h>
-        #if !defined(ZLIB_VERNUM) || (ZLIB_VERNUM < 0x1204)
-        # error zlib version too old
-        #endif
-        ]], [])], [
-    AC_MSG_RESULT([ok (1.2.0.4 or later)])
-
-    # Also need to add -lz to the linker flags and make sure this succeeds.
-    AC_SEARCH_LIBS([zlibVersion], [z], [
-      AC_DEFINE([HAVE_ZLIB], [1], [Enable classes using zlib compression.])
-      HAVE_ZLIB=1
-    ], [
-      AS_IF([test "$with_zlib" != check], [
-        AC_MSG_FAILURE([--with-zlib was given, but no working zlib library was found])
-      ])
-    ])
-  ], [
-    AS_IF([test "$with_zlib" = check], [
-      AC_MSG_RESULT([headers missing or too old (requires 1.2.0.4)])
-    ], [
-      AC_MSG_FAILURE([--with-zlib was given, but zlib headers were not present or were too old (requires 1.2.0.4)])
-    ])
-  ])
-])
-AM_CONDITIONAL([HAVE_ZLIB], [test $HAVE_ZLIB = 1])
-
-AS_IF([test "$with_protoc" != "no"], [
-  PROTOC=$with_protoc
-  AS_IF([test "$with_protoc" = "yes"], [
-    # No argument given.  Use system protoc.
-    PROTOC=protoc
-  ])
-  AS_IF([echo "$PROTOC" | grep -q '^@<:@^/@:>@.*/'], [
-    # Does not start with a slash, but contains a slash.  So, it's a relative
-    # path (as opposed to an absolute path or an executable in $PATH).
-    # Since it will actually be executed from the src directory, prefix with
-    # the current directory.  We also insert $ac_top_build_prefix in case this
-    # is a nested package and --with-protoc was actually given on the outer
-    # package's configure script.
-    PROTOC=`pwd`/${ac_top_build_prefix}$PROTOC
-  ])
-  AC_SUBST([PROTOC])
-])
-AM_CONDITIONAL([USE_EXTERNAL_PROTOC], [test "$with_protoc" != "no"])
-
-ACX_PTHREAD
-AM_CONDITIONAL([HAVE_PTHREAD], [test "x$acx_pthread_ok" = "xyes"])
-
-# We still keep this for improving pbconfig.h for unsupported platforms.
-AC_CXX_STL_HASH
-
-case "$target_os" in
-  mingw* | cygwin* | win*)
-    ;;
-  *)
-    # Need to link against rt on Solaris
-    AC_SEARCH_LIBS([sched_yield], [rt], [], [AC_MSG_FAILURE([sched_yield was not found on your system])])
-    ;;
-esac
-
-# Enable ObjC support for conformance directory on OS X.
-OBJC_CONFORMANCE_TEST=0
-case "$target_os" in
-  darwin*)
-    OBJC_CONFORMANCE_TEST=1
-    ;;
-esac
-AM_CONDITIONAL([OBJC_CONFORMANCE_TEST], [test $OBJC_CONFORMANCE_TEST = 1])
-
-# HACK:  Make gmock's configure script pick up our copy of CFLAGS and CXXFLAGS,
-#   since the flags added by ACX_CHECK_SUNCC must be used when compiling gmock
-#   too.
-export CFLAGS
-export CXXFLAGS
-AC_CONFIG_SUBDIRS([gmock])
-
-AC_CONFIG_FILES([Makefile src/Makefile benchmarks/Makefile conformance/Makefile protobuf.pc protobuf-lite.pc])
-AC_OUTPUT
+AC_OUTPUT([Makefile onigmo-config sample/Makefile], [chmod +x onigmo-config])

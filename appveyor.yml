@@ -1,45 +1,42 @@
-# Only test one combination: "Visual Studio 12 + Win64 + Debug + DLL". We can
-# test more combinations but AppVeyor just takes too long to finish (each
-# combination takes ~15mins).
-platform:
-  - Win64
+version: 1.0.{build}
 
-configuration:
-  - Debug
+branches:
+  except:
+  - ruby-2.x
+  - onig-5.9.x-mod
+  - onig-5.9.x-mod_for_bregonig-v2
 
 environment:
   matrix:
-    - language: cpp
-      BUILD_DLL: ON
-      UNICODE: ON
-
-    - language: csharp
-
-# Our build scripts run tests automatically; we don't want AppVeyor
-# to try to detect them itself.
-test: off
+  - ARCH: x64
+    PYOPT: -3
+  - ARCH: x86
+    PYOPT: -3.4-32
 
 install:
-  - curl -L -o release-1.7.0.zip https://github.com/google/googlemock/archive/release-1.7.0.zip
-  - 7z x release-1.7.0.zip
-  - del /Q release-1.7.0.zip
-  - rename googlemock-release-1.7.0 gmock
-  - curl -L -o release-1.7.0.zip "https://github.com/google/googletest/archive/release-1.7.0.zip"
-  - 7z x release-1.7.0.zip
-  - del /Q release-1.7.0.zip
-  - rename googletest-release-1.7.0 gtest
-  - move gtest gmock
-  - curl -L -o dotnetsdk.exe "https://go.microsoft.com/fwlink/?LinkID=809122"
-  - dotnetsdk.exe /install /quiet /norestart
-
-before_build:
-  - if %platform%==Win32 set generator=Visual Studio 12
-  - if %platform%==Win64 set generator=Visual Studio 12 Win64
-  - if %platform%==Win32 set vcplatform=Win32
-  - if %platform%==Win64 set vcplatform=x64
+- cmd: |-
+    rem Check environments.
+    rem path
+    rem dir C:\
+    rem dir "C:\Program Files"
+    rem dir "C:\Program Files\Microsoft SDKs\Windows"
+    rem dir "C:\Program Files (x86)"
+    rem dir "C:\Program Files (x86)\Windows Kits"
+    rem Using Windows SDK 7.1 (VC10)
+    rem "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /%ARCH% /release
+    rem Using VC12
+    "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" %ARCH%
+    path
 
 build_script:
-  - CALL appveyor.bat
+- cmd: |-
+    nmake -f win32\Makefile
+    dir build_%ARCH%\onigmo.dll
+    \msys64\usr\bin\file build_%ARCH%\onigmo.dll
 
-skip_commits:
-  message: /.*\[skip appveyor\].*/
+test_script:
+- cmd: |-
+    py %PYOPT% -c "import locale; print(locale.getpreferredencoding())"
+    nmake -f win32\Makefile test
+
+# vim: ts=2 sw=2 sts=2 et
