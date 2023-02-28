@@ -203,11 +203,6 @@ void bad_server() {
   puts(do_search(query));
 }
 
-void checkOverflow(unsigned short x, unsigned short y) {
-  // BAD: comparison is always false due to type promotion
-  return (x + y < x);  
-}
-
 const UChar OnigEncAsciiToLowerCaseTable[] = {
   '\000', '\001', '\002', '\003', '\004', '\005', '\006', '\007',
   '\010', '\011', '\012', '\013', '\014', '\015', '\016', '\017',
