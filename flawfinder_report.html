@@ -1,0 +1,2227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+<ul>
+<li>.\src\fileio.hpp:55: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\fileio.hpp:102: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\fileio.hpp:213: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\flif-dec.cpp:949: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\flif-dec.cpp:984: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\flif-dec.cpp:987: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\flif-dec.cpp:991: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\src\flif-dec.cpp:993: <b>  [5] </b> (buffer) <i> gets:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Use
+  fgets() instead. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:58: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:58: <b>  [4] </b> (format) <i> _snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1321: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1322: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3465: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5645: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6095: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6460: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6464: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6682: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6856: <b>  [4] </b> (buffer) <i> sscanf:
+  The scanf() family's %s operation, without a limit specification, permits
+  buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Specify
+  a limit to %s, or use a different input function. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7064: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7066: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7068: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8056: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8544: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8545: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8594: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8609: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8611: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8671: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8675: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8915: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9348: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9485: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9492: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9661: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\src\flif.cpp:221: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\flif.cpp:430: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\src\flif.cpp:438: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\flif.cpp:439: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\src\flif.cpp:440: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\src\flif.cpp:441: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\src\flif.cpp:442: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\src\image\image-rggb.cpp:123: <b>  [4] </b> (buffer) <i> strcat:
+  Does not check for buffer overflows when concatenating to destination
+  [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using strcat_s, strncat, strlcat, or snprintf (warning: strncat is
+  easily misused). </i>
+<li>.\src\image\image-rggb.cpp:124: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\src\image\image.hpp:1020: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\src\io.cpp:32: <b>  [4] </b> (format) <i> vfprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\io.cpp:55: <b>  [4] </b> (format) <i> vfprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\io.cpp:69: <b>  [4] </b> (format) <i> vfprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\build\MSVC\getopt\getopt.c:116: <b>  [3] </b> (buffer) <i> getenv:
+  Environment variables are untrustable input if they can be set by an
+  attacker. They can have any content and length, and the same variable can
+  be set more than once (<a
+  href="https://cwe.mitre.org/data/definitions/807.html">CWE-807</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  environment variables carefully before using them. </i>
+<li>.\build\MSVC\getopt\getopt.h:124: <b>  [3] </b> (buffer) <i> getopt:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\build\MSVC\getopt\getopt.h:125: <b>  [3] </b> (buffer) <i> getopt_long:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\build\MSVC\getopt\getopt.h:130: <b>  [3] </b> (buffer) <i> getopt:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\build\MSVC\getopt\getopt.h:131: <b>  [3] </b> (buffer) <i> getopt_long:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\src\flif.cpp:522: <b>  [3] </b> (buffer) <i> getopt_long:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\src\flif.cpp:524: <b>  [3] </b> (buffer) <i> getopt_long:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\extern\lodepng.cpp:355: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\extern\lodepng.cpp:377: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\extern\lodepng.cpp:403: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\extern\lodepng.cpp:753: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\lodepng.cpp:1202: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\lodepng.cpp:2426: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\lodepng.h:568: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\lodepng.h:692: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image.h:615: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image.h:1037: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\extern\stb_image.h:1276: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:1286: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:3759: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:4053: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:4187: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:4897: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image.h:5707: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:5711: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:5717: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\extern\stb_image.h:5905: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image.h:6016: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:205: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\extern\stb_image_write.h:235: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:241: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:265: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:272: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:500: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:501: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:595: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:599: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\extern\stb_image_write.h:723: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:853: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\extern\stb_image_write.h:949: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\arw_encode.c:31: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\arw_encode.c:156: <b>  [2] </b> (integer) <i> atol:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\arw_encode.c:157: <b>  [2] </b> (integer) <i> atol:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\arw_encode.c:166: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:108: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:109: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:231: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:340: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1309: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1332: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1487: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2267: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2382: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2789: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3185: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3347: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3419: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3507: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3508: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3509: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3519: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3525: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3529: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3549: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3759: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3795: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3898: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3903: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3921: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3922: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3960: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4019: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4257: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4296: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4578: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4602: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4606: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4607: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4716: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4728: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4770: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4771: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4792: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4941: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:4951: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5110: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5246: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5528: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5617: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5740: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5911: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5944: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5954: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5955: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5986: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6025: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6055: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6073: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6088: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6210: <b>  [2] </b> (tmpfile) <i> tmpfile:
+  Function tmpfile() has a security flaw on some systems (e.g., older System
+  V systems) (<a
+  href="https://cwe.mitre.org/data/definitions/377.html">CWE-377</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6466: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6467: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6478: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6626: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6642: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6644: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6646: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6648: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6650: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6657: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6658: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6665: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6753: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6756: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6757: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6758: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6759: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6831: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6832: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6871: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6901: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6902: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6929: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6930: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6998: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7062: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7070: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7072: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8053: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8211: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8267: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8376: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8434: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8435: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8441: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8442: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8444: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8445: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8448: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8449: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8487: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8506: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8525: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8526: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8583: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8600: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8689: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8747: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8824: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8834: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8843: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8860: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8861: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8870: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8875: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8895: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8987: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9024: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9050: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9051: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9054: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9058: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9069: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9074: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9142: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9213: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9215: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9236: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9242: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9248: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9270: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9299: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9311: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9382: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9455: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9461: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9469: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9471: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9474: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9484: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9601: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9617: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9633: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9663: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9713: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9729: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9828: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\fileio.hpp:163: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\flif-dec.cpp:983: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\flif-dec.cpp:989: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\flif.cpp:129: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\flif.cpp:135: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\flif.cpp:137: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\flif.cpp:341: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\flif.cpp:367: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\flif.cpp:534: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:537: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:561: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:566: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:579: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:582: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:585: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:588: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:597: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:600: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:603: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:637: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\flif.cpp:643: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\image\image-metadata.cpp:13: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-metadata.cpp:40: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-pam.cpp:19: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-pam.cpp:20: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image-pam.cpp:41: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image-pam.cpp:112: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-png-metadata.hpp:25: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image-png.cpp:65: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-png.cpp:363: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-pnm.cpp:37: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-pnm.cpp:39: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image-pnm.cpp:124: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-rggb.cpp:17: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image-rggb.cpp:18: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image-rggb.cpp:26: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image-rggb.cpp:279: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\image\image.hpp:436: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\image\image.hpp:1026: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\library\flif-interface_dec.cpp:37: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\library\flif-interface_enc.cpp:80: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\viewflif.c:121: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\viewflif.c:122: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\tools\test.c:107: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:210: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:247: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:273: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:288: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:293: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:371: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:392: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:409: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:423: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:429: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:670: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:707: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:733: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:748: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:753: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:831: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:852: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:869: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:883: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\build\MSVC\getopt\getopt.c:889: <b>  [1] </b> (buffer) <i> wcslen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:306: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:2435: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:5016: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:5043: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:5758: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:5763: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:5797: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\lodepng.cpp:5802: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\extern\stb_image.h:437: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\extern\stb_image.h:1215: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\extern\stb_image.h:1242: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\extern\stb_image.h:1258: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\extern\stb_image.h:1271: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\extern\stb_image.h:1278: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:49: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:269: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:356: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:358: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:588: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:603: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:604: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:796: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:822: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:822: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:839: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:898: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1166: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1202: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1203: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1257: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1278: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1946: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:1950: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2544: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2559: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2560: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2567: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2674: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:2871: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3034: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3039: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3164: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3195: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3212: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3213: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3918: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3963: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3963: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:3964: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5338: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5340: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5369: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5399: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5429: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5429: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5429: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5429: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5533: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5574: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5589: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5724: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5784: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5784: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:5944: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6087: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6412: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6412: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6412: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6413: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6417: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6457: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6458: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6540: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6636: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6781: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6782: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6785: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6807: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6807: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6809: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6809: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6814: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:6894: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7034: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:7034: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8058: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8122: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8430: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8601: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8603: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8605: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:8670: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9470: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9658: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9659: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9660: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\raw-tools\sony_arw\dcraw.c:9665: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\fileio.hpp:52: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\fileio.hpp:53: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\fileio.hpp:97: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\fileio.hpp:208: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\flif-dec.cpp:928: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\flif-dec.cpp:941: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\flif-dec.cpp:961: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\flif.cpp:209: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\flif.cpp:425: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\image\image-pam.cpp:86: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-pam.cpp:87: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-pam.cpp:96: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-pnm.cpp:85: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-pnm.cpp:94: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-pnm.cpp:95: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-pnm.cpp:109: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:29: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:33: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:54: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:56: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:62: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:81: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:123: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\image\image-rggb.cpp:174: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:217: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:218: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:220: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:221: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:225: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:226: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:228: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:229: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:240: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:241: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:244: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:245: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:254: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:255: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\image\image-rggb.cpp:264: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io.hpp:32: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\compound.hpp:83: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\compound_enc.hpp:98: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\rac.hpp:64: <b>  [1] </b> (buffer) <i> getc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\symbol.hpp:169: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\symbol.hpp:184: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\symbol.hpp:187: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\symbol.hpp:201: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\symbol.hpp:217: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\maniac\symbol.hpp:240: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tools\test.c:126: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 446
+<br>
+Lines analyzed = 41271 in approximately 0.33 seconds (126715 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 32335
+<br>
+Hits@level = [0] 235 [1] 167 [2] 224 [3]   7 [4]  40 [5]   8 <br>
+Hits@level+ = [0+] 681 [1+] 446 [2+] 279 [3+]  55 [4+]  48 [5+]   8 <br>
+Hits/KSLOC@level+ = [0+] 21.0608 [1+] 13.7931 [2+] 8.62842 [3+] 1.70094 [4+] 1.48446 [5+] 0.24741 <br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>
