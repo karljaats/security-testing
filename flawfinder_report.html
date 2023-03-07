@@ -1,0 +1,728 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+<ul>
+<li>.\tests\cJSON.c:406: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\tests\testcase.c:74: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\apps\avifdec.c:42: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\avifdec.c:144: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifdec.c:151: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifdec.c:203: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\avifenc.c:117: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\avifenc.c:124: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:142: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\avifenc.c:149: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:281: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:292: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:315: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:318: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:327: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:336: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:345: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:354: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:363: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:397: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:407: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:415: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:456: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:464: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\avifenc.c:765: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\shared\avifjpeg.c:50: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\shared\avifjpeg.c:94: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\apps\shared\avifjpeg.c:133: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\shared\avifpng.c:36: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\shared\avifpng.c:165: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\shared\avifutil.c:56: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\shared\avifutil.c:69: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\shared\iccjpeg.c:175: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\shared\y4m.c:186: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\apps\shared\y4m.c:191: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\apps\shared\y4m.c:220: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\shared\y4m.c:225: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\shared\y4m.c:228: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\apps\shared\y4m.c:341: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\apps\shared\y4m.c:444: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\examples\avif_example1.c:59: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\examples\avif_example1.c:119: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\include\avif\internal.h:150: <b>  [2] </b> (misc) <i> open:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\avif.c:144: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\avif.c:172: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\avif.c:182: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\avif.c:467: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\avif.c:473: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\codec_aom.c:364: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\codec_aom.c:382: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\codec_rav1e.c:40: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\codec_rav1e.c:54: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\colr.c:34: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\colr.c:40: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\rawdata.c:17: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\rawdata.c:27: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:56: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\read.c:62: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\read.c:670: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:764: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:772: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:788: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:793: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:1152: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:1243: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:1353: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:1354: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:1949: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2009: <b>  [2] </b> (misc) <i> open:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\read.c:2266: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2282: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2344: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2349: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2354: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2359: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\read.c:2512: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:61: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:140: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:249: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:269: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:270: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:290: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:297: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:306: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:315: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\stream.c:324: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\utils.c:22: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\utils.c:42: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\utils.c:66: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\utils.c:99: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\utils.c:118: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\write.c:425: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\write.c:426: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\aviftest.c:38: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\aviftest.c:154: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\aviftest.c:157: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\tests\aviftest.c:179: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\aviftest.c:182: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\tests\aviftest.c:301: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\avifyuv.c:69: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\cJSON.c:122: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\cJSON.c:123: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\tests\cJSON.c:200: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\cJSON.c:305: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\cJSON.c:512: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\cJSON.c:549: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\cJSON.c:561: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\tests\cJSON.c:566: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\tests\cJSON.c:572: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\tests\cJSON.c:918: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\cJSON.c:959: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\cJSON.c:1005: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\tests\cJSON.c:1222: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\cJSON.c:1378: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\cJSON.c:1387: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\cJSON.c:1396: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\cJSON.c:1416: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\cJSON.c:1935: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\testcase.c:72: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\testcase.c:83: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\testcase.c:201: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\apps\avifenc.c:118: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\apps\avifenc.c:143: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\apps\avifenc.c:163: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\apps\shared\avifutil.c:70: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\apps\shared\y4m.c:130: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\apps\shared\y4m.c:336: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\avif.c:462: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\stream.c:132: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cJSON.c:194: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cJSON.c:404: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cJSON.c:404: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cJSON.c:532: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cJSON.c:1083: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cJSON.c:1410: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 135
+<br>
+Lines analyzed = 15289 in approximately 0.10 seconds (156644 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 12036
+<br>
+Hits@level = [0] 214 [1]  14 [2] 119 [3]   0 [4]   2 [5]   0 <br>
+Hits@level+ = [0+] 349 [1+] 135 [2+] 121 [3+]   2 [4+]   2 [5+]   0 <br>
+Hits/KSLOC@level+ = [0+] 28.9963 [1+] 11.2164 [2+] 10.0532 [3+] 0.166168 [4+] 0.166168 [5+]   0 <br>
+Dot directories skipped = 1 (--followdotdir overrides)
+<br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>
