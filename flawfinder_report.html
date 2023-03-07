@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+<ul>
+<li>.\src\time64.c:151: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\time64.c:152: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\time64.c:153: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\time64.c:154: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\time64.c:795: <b>  [4] </b> (format) <i> sprintf:
+  Potential format string problem (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Make
+  format string constant. </i>
+<li>.\src\xplist.c:80: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\xplist.c:110: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\xplist.c:170: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\xplist.c:172: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\xplist.c:235: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\xplist.c:237: <b>  [4] </b> (format) <i> snprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\src\xplist.c:394: <b>  [4] </b> (buffer) <i> sscanf:
+  The scanf() family's %s operation, without a limit specification, permits
+  buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Specify
+  a limit to %s, or use a different input function. If the scanf format is
+  influenceable by an attacker, it's exploitable. </i>
+<li>.\src\xplist.c:89: <b>  [3] </b> (buffer) <i> getenv:
+  Environment variables are untrustable input if they can be set by an
+  attacker. They can have any content and length, and the same variable can
+  be set more than once (<a
+  href="https://cwe.mitre.org/data/definitions/807.html">CWE-807</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  environment variables carefully before using them. </i>
+<li>.\src\base64.c:27: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\base64.c:54: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\bplist.c:137: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:229: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:234: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:257: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:297: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:371: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:380: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:394: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:514: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:865: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:879: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:892: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:897: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:909: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:930: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:951: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:985: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1022: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1029: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1053: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1258: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1272: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1273: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1274: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1275: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1276: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bplist.c:1282: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\bytearray.c:54: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\plist.c:294: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\plist.c:325: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\plist.c:331: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\plist.c:708: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\plist.c:915: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\time64.c:52: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\time64.c:62: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\time64.c:66: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\time64.c:109: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\time64.c:418: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\time64.c:450: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\time64.c:468: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\time64.c:487: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\xplist.c:1136: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\test\plist_cmp.c:103: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\test\plist_cmp.c:104: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\test\plist_test.c:58: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\test\plist_test.c:113: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\tools\plistutil.c:125: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\tools\plistutil.c:154: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\base64.c:109: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\bplist.c:299: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\bplist.c:382: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\bplist.c:942: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\bplist.c:1211: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:240: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:249: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:530: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:739: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:748: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:926: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\plist.c:931: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\xplist.c:768: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\xplist.c:879: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\xplist.c:1138: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 78
+<br>
+Lines analyzed = 9179 in approximately 0.06 seconds (160368 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 6145
+<br>
+Hits@level = [0]  37 [1]  15 [2]  50 [3]   1 [4]  12 [5]   0 <br>
+Hits@level+ = [0+] 115 [1+]  78 [2+]  63 [3+]  13 [4+]  12 [5+]   0 <br>
+Hits/KSLOC@level+ = [0+] 18.7144 [1+] 12.6932 [2+] 10.2522 [3+] 2.11554 [4+] 1.95281 [5+]   0 <br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>
