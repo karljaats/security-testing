@@ -1,0 +1,712 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+<ul>
+<li>.\examples\network_server\client.c:72: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\tests\callbacks\decode_callbacks.c:24: <b>  [4] </b> (format) <i> printf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\callbacks\decode_callbacks.c:34: <b>  [4] </b> (format) <i> printf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\callbacks\decode_callbacks.c:44: <b>  [4] </b> (format) <i> printf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\callbacks\decode_callbacks.c:54: <b>  [4] </b> (format) <i> printf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\oneof_callback\decode_oneof.c:51: <b>  [4] </b> (format) <i> printf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\oneof_callback\decode_oneof.c:71: <b>  [4] </b> (format) <i> printf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\site_scons\platforms\avr\run_test.c:47: <b>  [4] </b> (format) <i> vfprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\using_union_messages\encode.c:53: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\extra\pb_syshdr.h:90: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\pb.h:159: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\alltypes\decode_alltypes.c:291: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes\encode_alltypes.c:16: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes\encode_alltypes.c:39: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes\encode_alltypes.c:41: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes\encode_alltypes.c:42: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes\encode_alltypes.c:45: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes\encode_alltypes.c:63: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes\encode_alltypes.c:65: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes\encode_alltypes.c:68: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes\encode_alltypes.c:77: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes\encode_alltypes.c:124: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes\encode_alltypes.c:127: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes\encode_alltypes.c:129: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes\encode_alltypes.c:135: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes\encode_alltypes.c:138: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes_callback\decode_alltypes_callback.c:471: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_callback\encode_alltypes_callback.c:215: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_pointer\decode_alltypes_pointer.c:167: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_pointer\encode_alltypes_pointer.c:13: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_proto3\decode_alltypes.c:152: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:13: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:34: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:36: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:39: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:47: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:79: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:81: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:83: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:86: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\alltypes_proto3\encode_alltypes.c:89: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\alltypes_proto3_callback\decode_alltypes_callback.c:405: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\alltypes_proto3_callback\encode_alltypes_callback.c:215: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\anonymous_oneof\decode_oneof.c:65: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\backwards_compatibility\alltypes_legacy.h:59: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\backwards_compatibility\alltypes_legacy.h:84: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\backwards_compatibility\alltypes_legacy.h:115: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\backwards_compatibility\alltypes_legacy.h:149: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\backwards_compatibility\decode_legacy.c:182: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:16: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:37: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:39: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:40: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:60: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:62: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:65: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:105: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:108: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\backwards_compatibility\encode_legacy.c:110: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\callbacks\encode_callbacks.c:49: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\cyclic_messages\encode_cyclic_callback.c:53: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\cyclic_messages\encode_cyclic_callback.c:107: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\decode_unittests\decode_unittests.c:298: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\encode_unittests\encode_unittests.c:255: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\encode_unittests\encode_unittests.c:412: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\field_size_16_proto3\decode_alltypes.c:152: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:13: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:34: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:36: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:39: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:47: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:79: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:81: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:83: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:86: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\field_size_16_proto3\encode_alltypes.c:89: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\fuzztest\fuzztest.c:169: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\fuzztest\fuzztest.c:191: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\fuzztest\fuzztest.c:213: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\fuzztest\fuzztest.c:517: <b>  [2] </b> (integer) <i> atol:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\fuzztest\fuzztest.c:518: <b>  [2] </b> (integer) <i> atol:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\fuzztest\generate_message.c:91: <b>  [2] </b> (integer) <i> atol:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\msgid\encode_msgid.c:37: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\msgid\encode_msgid.c:62: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\oneof\decode_oneof.c:102: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\oneof\encode_oneof.c:21: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\oneof\encode_oneof.c:36: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\oneof_callback\encode_oneof.c:71: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\oneof_callback\encode_oneof.c:86: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\site_scons\platforms\avr\avr_io.c:15: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\site_scons\platforms\avr\avr_io.c:36: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\site_scons\platforms\avr\run_test.c:20: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\site_scons\platforms\avr\run_test.c:96: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\without_64bit\decode_alltypes.c:168: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\without_64bit\encode_alltypes.c:13: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\without_64bit\encode_alltypes.c:27: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:29: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:30: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:33: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:44: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:46: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:49: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:58: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:87: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:90: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:92: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:98: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\tests\without_64bit\encode_alltypes.c:101: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\examples\network_server\client.c:66: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\examples\network_server\server.c:43: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\extra\pb_syshdr.h:80: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\alltypes_callback\encode_alltypes_callback.c:52: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\alltypes_callback\encode_alltypes_callback.c:161: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\alltypes_proto3_callback\encode_alltypes_callback.c:52: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\alltypes_proto3_callback\encode_alltypes_callback.c:161: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\callbacks\encode_callbacks.c:16: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\callbacks\encode_callbacks.c:57: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\cyclic_messages\encode_cyclic_callback.c:75: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\tests\cyclic_messages\encode_cyclic_callback.c:93: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\tests\fuzztest\fuzztest.c:240: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\fuzztest\fuzztest.c:241: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\fuzztest\fuzztest.c:244: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\map\encode_map.c:17: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Risk
+  is low because the source is a constant string. </i>
+<li>.\tests\map\encode_map.c:18: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Risk
+  is low because the source is a constant string. </i>
+<li>.\tests\map\encode_map.c:19: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Risk
+  is low because the source is a constant string. </i>
+<li>.\tests\oneof_callback\decode_oneof.c:28: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\decode_oneof.c:31: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\decode_oneof.c:33: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\decode_oneof.c:60: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\decode_oneof.c:63: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\decode_oneof.c:65: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\encode_oneof.c:26: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\oneof_callback\encode_oneof.c:56: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\tests\site_scons\platforms\avr\run_test.c:70: <b>  [1] </b> (buffer) <i> fgetc:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\site_scons\platforms\avr\run_test.c:170: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 135
+<br>
+Lines analyzed = 14666 in approximately 0.12 seconds (122153 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 10814
+<br>
+Hits@level = [0] 192 [1]  27 [2] 100 [3]   0 [4]   8 [5]   0 <br>
+Hits@level+ = [0+] 327 [1+] 135 [2+] 108 [3+]   8 [4+]   8 [5+]   0 <br>
+Hits/KSLOC@level+ = [0+] 30.2386 [1+] 12.4838 [2+] 9.98705 [3+] 0.739782 [4+] 0.739782 [5+]   0 <br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>
