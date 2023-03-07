@@ -1,0 +1,1095 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf8">
+<title>Flawfinder Results</title>
+<meta name="author" content="David A. Wheeler">
+<meta name="keywords" lang="en" content="flawfinder results, security scan">
+</head>
+<body>
+<h1>Flawfinder Results</h1>
+Here are the security scan results from
+<a href="https://dwheeler.com/flawfinder">Flawfinder version 2.0.19</a>,
+(C) 2001-2019 <a href="https://dwheeler.com">David A. Wheeler</a>.
+Number of rules (primarily dangerous function names) in C/C++ ruleset: 222
+<p>
+<ul>
+<li>.\examples\utils.c:104: <b>  [4] </b> (race) <i> access:
+  This usually indicates a security flaw. If an attacker can change anything
+  along the path between the call to access() and the file's actual use
+  (e.g., by moving files), the attacker can exploit the race condition (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>/<a
+  href="https://cwe.mitre.org/data/definitions/367.html">CWE-367</a>!). Set
+  up the correct permissions (e.g., using setuid()) and try to open the file
+  directly. </i>
+<li>.\examples\utils.h:35: <b>  [4] </b> (race) <i> access:
+  This usually indicates a security flaw. If an attacker can change anything
+  along the path between the call to access() and the file's actual use
+  (e.g., by moving files), the attacker can exploit the race condition (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>/<a
+  href="https://cwe.mitre.org/data/definitions/367.html">CWE-367</a>!). Set
+  up the correct permissions (e.g., using setuid()) and try to open the file
+  directly. </i>
+<li>.\examples\utils.h:47: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:51: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:52: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:53: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:56: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:60: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:61: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\utils.h:62: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\src\aubio_priv.h:195: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\src\aubio_priv.h:234: <b>  [4] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. </i>
+<li>.\src\tempo\tempo.c:208: <b>  [4] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). </i>
+<li>.\src\utils\log.c:51: <b>  [4] </b> (format) <i> vsnprintf:
+  If format strings can be influenced by an attacker, they can be exploited,
+  and note that sprintf variations do not always \0-terminate (<a
+  href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>). Use a
+  constant for the format specification. </i>
+<li>.\tests\utils_tests.h:9: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:10: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:11: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:12: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:14: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:15: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:16: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\tests\utils_tests.h:17: <b>  [4] </b> (format) <i> fprintf:
+  If format strings can be influenced by an attacker, they can be exploited
+  (<a href="https://cwe.mitre.org/data/definitions/134.html">CWE-134</a>).
+  Use a constant for the format specification. </i>
+<li>.\examples\parse_args.h:210: <b>  [3] </b> (buffer) <i> getopt_long:
+  Some older implementations do not protect against internal buffer overflows
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). Check
+  implementation on installation, or limit the size of all string inputs. </i>
+<li>.\tests\src\test-cvec.c:15: <b>  [3] </b> (random) <i> random:
+  This function is not sufficiently random for security-related functions
+  such as key and nonce creation (<a
+  href="https://cwe.mitre.org/data/definitions/327.html">CWE-327</a>). Use a
+  more secure technique for acquiring random values. </i>
+<li>.\tests\src\test-cvec.c:16: <b>  [3] </b> (random) <i> random:
+  This function is not sufficiently random for security-related functions
+  such as key and nonce creation (<a
+  href="https://cwe.mitre.org/data/definitions/327.html">CWE-327</a>). Use a
+  more secure technique for acquiring random values. </i>
+<li>.\tests\utils_tests.h:35: <b>  [3] </b> (random) <i> srandom:
+  This function is not sufficiently random for security-related functions
+  such as key and nonce creation (<a
+  href="https://cwe.mitre.org/data/definitions/327.html">CWE-327</a>). Use a
+  more secure technique for acquiring random values. </i>
+<li>.\tests\utils_tests.h:39: <b>  [3] </b> (random) <i> random:
+  This function is not sufficiently random for security-related functions
+  such as key and nonce creation (<a
+  href="https://cwe.mitre.org/data/definitions/327.html">CWE-327</a>). Use a
+  more secure technique for acquiring random values. </i>
+<li>.\tests\utils_tests.h:52: <b>  [3] </b> (random) <i> srandom:
+  This function is not sufficiently random for security-related functions
+  such as key and nonce creation (<a
+  href="https://cwe.mitre.org/data/definitions/327.html">CWE-327</a>). Use a
+  more secure technique for acquiring random values. </i>
+<li>.\examples\jackio.c:96: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\examples\parse_args.h:222: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\examples\parse_args.h:225: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\examples\parse_args.h:237: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\examples\parse_args.h:240: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\examples\parse_args.h:243: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\src\aubio_priv.h:180: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\aubio_priv.h:186: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\cvec.c:92: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\cvec.c:93: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\fmat.c:146: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\fvec.c:142: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\audio_unit.c:312: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\audio_unit.c:313: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\audio_unit.c:317: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\audio_unit.c:318: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\audio_unit.c:324: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\audio_unit.c:328: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\io\sink_apple_audio.c:222: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\src\io\sink_apple_audio.c:224: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\src\io\sink_wavwrite.c:168: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\sink_wavwrite.c:172: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\io\sink_wavwrite.c:283: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_avcodec.c:98: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_avcodec.c:152: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_avcodec.c:167: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_avcodec.c:233: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_avcodec.c:321: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_avcodec.c:380: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_wavread.c:78: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\src\io\source_wavread.c:101: <b>  [2] </b> (misc) <i> fopen:
+  Check when opening files - can an attacker redirect it (via symlinks),
+  force the opening of special file type (e.g., device files), move things
+  around to create a race condition, control its ancestors, or change its
+  contents? (<a
+  href="https://cwe.mitre.org/data/definitions/362.html">CWE-362</a>). </i>
+<li>.\src\io\utils_apple_audio.c:54: <b>  [2] </b> (buffer) <i> sprintf:
+  Does not check for buffer overflows (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Use
+  sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a
+  constant maximum length. </i>
+<li>.\src\pitch\pitch.c:285: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\spectral\fft.c:331: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\spectral\phasevoc.c:175: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\spectral\phasevoc.c:177: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\spectral\phasevoc.c:180: <b>  [2] </b> (buffer) <i> memcpy:
+  Does not check for buffer overflows when copying to destination (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). Make
+  sure destination can always hold the source data. </i>
+<li>.\src\tempo\tempo.c:206: <b>  [2] </b> (buffer) <i> strcpy:
+  Does not check for buffer overflows when copying to destination [MS-banned]
+  (<a href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Consider using snprintf, strcpy_s, or strlcpy (warning: strncpy easily
+  misused). Risk is low because the source is a constant string. </i>
+<li>.\src\utils\log.c:29: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\tests\src\io\test-sink-multi.c:26: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink-multi.c:27: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink-multi.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink.c:22: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink.c:23: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_apple_audio-multi.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_apple_audio-multi.c:29: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_apple_audio-multi.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_apple_audio.c:27: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_apple_audio.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_sndfile-multi.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_sndfile-multi.c:29: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_sndfile-multi.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_sndfile.c:27: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_sndfile.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_wavwrite-multi.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_wavwrite-multi.c:29: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_wavwrite-multi.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_wavwrite.c:27: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-sink_wavwrite.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source.c:25: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source.c:26: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_apple_audio.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_apple_audio.c:31: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_avcodec.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_avcodec.c:31: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_multi.c:28: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_multi.c:29: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_multi.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_seek.c:26: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_seek.c:27: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_sndfile.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_sndfile.c:31: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_wavread.c:30: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\io\test-source_wavread.c:31: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\onset\test-onset.c:18: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\onset\test-onset.c:19: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\spectral\test-awhitening.c:23: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\spectral\test-awhitening.c:24: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\synth\test-sampler.c:22: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\synth\test-wavetable.c:20: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\tempo\test-tempo.c:15: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\tempo\test-tempo.c:17: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\tempo\test-tempo.c:19: <b>  [2] </b> (integer) <i> atoi:
+  Unless checked, the resulting number can exceed the expected range (<a
+  href="https://cwe.mitre.org/data/definitions/190.html">CWE-190</a>). If
+  source untrusted, check both minimum and maximum, even if the input had no
+  minus sign (large numbers can roll over into negative number; consider
+  saving to an unsigned value if that is intended). </i>
+<li>.\tests\src\test-mathutils-window.c:10: <b>  [2] </b> (buffer) <i> char:
+  Statically-sized arrays can be improperly restricted, leading to potential
+  overflows or other issues (<a
+  href="https://cwe.mitre.org/data/definitions/119.html">CWE-119</a>!/<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>).
+  Perform bounds checking, use functions that limit length, or ensure that
+  the size is larger than the maximum possible length. </i>
+<li>.\examples\jackio.c:331: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\examples\jackio.c:350: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\examples\jackio.c:352: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\examples\utils.c:168: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\examples\utils.c:178: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\python\ext\py-sink.c:86: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\python\ext\py-source.c:106: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\python\ext\py-source.c:181: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\python\ext\py-source.c:189: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\python\ext\py-source.c:193: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\python\ext\py-source.c:202: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\python\ext\py-source.c:210: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\python\ext\py-source.c:214: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\aubio_priv.h:192: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\aubio_priv.h:352: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\io\sink_apple_audio.c:64: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\io\sink_apple_audio.c:70: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\sink_sndfile.c:66: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\sink_wavwrite.c:97: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\source.c:38: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.c:39: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.c:128: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.c:129: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.c:132: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.c:133: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.h:102: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source.h:116: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_apple_audio.c:99: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\source_apple_audio.c:199: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_apple_audio.c:235: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_apple_audio.h:74: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_apple_audio.h:88: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_avcodec.c:103: <b>  [1] </b> (buffer) <i> strlen:
+  Does not handle strings that are not \0-terminated; if given one it may
+  perform an over-read (it could cause a crash if unprotected) (<a
+  href="https://cwe.mitre.org/data/definitions/126.html">CWE-126</a>). </i>
+<li>.\src\io\source_avcodec.c:140: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\source_avcodec.c:458: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_avcodec.c:490: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_avcodec.h:73: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_avcodec.h:87: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.c:91: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\source_sndfile.c:170: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.c:203: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.c:204: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.c:211: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.c:270: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.c:272: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.h:73: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_sndfile.h:87: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_wavread.c:96: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\io\source_wavread.c:306: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_wavread.c:322: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_wavread.c:327: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_wavread.c:366: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_wavread.h:78: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\io\source_wavread.h:92: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\synth\sampler.c:63: <b>  [1] </b> (buffer) <i> strncpy:
+  Easily used incorrectly; doesn't always \0-terminate or check for invalid
+  pointers [MS-banned] (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>). </i>
+<li>.\src\synth\sampler.c:75: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\synth\sampler.c:79: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\synth\sampler.c:92: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\src\synth\sampler.c:98: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink-multi.c:52: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink-multi.c:53: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink-multi.c:54: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink.c:42: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink.c:43: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink.c:44: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_apple_audio-multi.c:54: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_apple_audio-multi.c:55: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_apple_audio-multi.c:56: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_apple_audio.c:47: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_apple_audio.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_apple_audio.c:49: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_sndfile-multi.c:54: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_sndfile-multi.c:55: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_sndfile-multi.c:56: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_sndfile.c:47: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_sndfile.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_sndfile.c:49: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_wavwrite-multi.c:54: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_wavwrite-multi.c:55: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_wavwrite-multi.c:56: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_wavwrite.c:47: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_wavwrite.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-sink_wavwrite.c:49: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source.c:41: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source.c:43: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_apple_audio.c:46: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_apple_audio.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_avcodec.c:46: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_avcodec.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_multi.c:44: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_multi.c:46: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_seek.c:39: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_seek.c:41: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_seek.c:55: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_seek.c:57: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_seek.c:71: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_seek.c:73: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_sndfile.c:46: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_sndfile.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_wavread.c:47: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\io\test-source_wavread.c:49: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\onset\test-onset.c:36: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\onset\test-onset.c:45: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\spectral\test-awhitening.c:57: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\spectral\test-awhitening.c:68: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\spectral\test-awhitening.c:69: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\synth\test-sampler.c:34: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\synth\test-sampler.c:48: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\synth\test-sampler.c:49: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\tempo\test-tempo.c:37: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+<li>.\tests\src\tempo\test-tempo.c:46: <b>  [1] </b> (buffer) <i> read:
+  Check buffer boundaries if used in a loop including recursive loops (<a
+  href="https://cwe.mitre.org/data/definitions/120.html">CWE-120</a>, <a
+  href="https://cwe.mitre.org/data/definitions/20.html">CWE-20</a>). </i>
+</ul>
+<h2>Analysis Summary</h2>
+<p>
+Hits = 223
+<br>
+Lines analyzed = 28395 in approximately 0.20 seconds (143938 lines/second)
+<br>
+Physical Source Lines of Code (SLOC) = 17217
+<br>
+Hits@level = [0]  59 [1] 111 [2]  84 [3]   6 [4]  22 [5]   0 <br>
+Hits@level+ = [0+] 282 [1+] 223 [2+] 112 [3+]  28 [4+]  22 [5+]   0 <br>
+Hits/KSLOC@level+ = [0+] 16.3792 [1+] 12.9523 [2+] 6.5052 [3+] 1.6263 [4+] 1.27781 [5+]   0 <br>
+Minimum risk level = 1
+<br>
+Not every hit is necessarily a security vulnerability.
+You can inhibit a report by adding a comment in this form:
+// flawfinder: ignore
+Make *sure* it's a false positive!
+You can use the option --neverignore to show these.
+<br>
+There may be other security vulnerabilities; review your code!
+<br>
+See '<a href="https://dwheeler.com/secure-programs">Secure Programming HOWTO</a>'
+(<a href="https://dwheeler.com/secure-programs">https://dwheeler.com/secure-programs</a>) for more information.
+</body>
+</html>
