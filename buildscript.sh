@@ -6,6 +6,7 @@ sudo apt-get update
 sudo apt-get install openssl=1.1.1f-1ubuntu2.17
 
 openssl version
+apt list openssl
 
 ./autogen.sh
 
