@@ -5,6 +5,8 @@ CXXFLAGS='-std=c++17' make target
 sudo apt-get update
 sudo apt-get install autoconf automake libtool curl make g++ unzip libssl-dev
 
+openssl version
+
 ./autogen.sh
 
 ./configure
