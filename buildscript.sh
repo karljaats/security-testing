@@ -3,8 +3,10 @@
 CXXFLAGS='-std=c++11' make target
 
 sudo apt-get update
-sudo apt-cache madison openssl
-sudo apt-get install -y --allow-downgrades openssl=1.1.1f-1ubuntu2.17
+openssl_ver=`sudo apt-cache madison openssl | grep xenial-updates | awk '{print $3}'`
+libssl_ver=`sudo apt-cache madison libssl-dev | grep xenial-updates | awk '{print $3}'`
+[ -n "${openssl_ver}" ] && [ -n "${libssl_ver}" ] && \
+sudo apt-get install -y --allow-downgrades openssl=${openssl_ver} libssl-dev=${libssl_ver}
 
 openssl version
 apt list openssl
