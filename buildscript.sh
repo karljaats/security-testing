@@ -9,6 +9,6 @@ sudo apt-get install autoconf automake libtool curl make g++ unzip libssl-dev
 
 ./configure
 #make
-make CXXFLAGS='-std=c++14'
+make CXXFLAGS='-std=c++11'
 sudo make install
 #sudo ldconfig # refresh shared library cache.
