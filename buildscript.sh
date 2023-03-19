@@ -16,6 +16,7 @@ sudo apt-get install libprotoc-dev
 
 chmod +rwx generator-bin
 chmod +rwx generator-bin/protoc
+chmod +rwx generator-bin/protoc.bin
 chmod +rwx examples
 chmod +rwx examples/simple
 chmod +rwx examples/simple/Makefile
