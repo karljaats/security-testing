@@ -4,7 +4,7 @@ CXXFLAGS='-std=c++11' make target
 
 sudo apt-get install python2.7
 
-sudo ln -s /bin/python2.7 /usr/bin/python
+sudo ln -s /usr/bin/python /bin/python2.7
 
 python --version
 python2 --version
