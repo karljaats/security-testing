@@ -22,6 +22,9 @@ chmod +rwx examples/simple
 chmod +rwx examples/simple/Makefile
 chmod +rwx generator
 chmod +rwx generator/protoc
+chmod +rwx generator/protoc.bat
+chmod +rwx generator/protoc-gen-nanopb
+chmod +rwx generator/protoc-gen-nanopb.bat
 
 #protoc --plugin=protoc-gen-nanopb=generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
 
@@ -33,10 +36,10 @@ chmod +rwx generator/protoc
 #cd ..
 #cd ..
 
-#generator-bin/protoc --nanopb_out=. ./examples/simple/simple.proto
+generator-bin/protoc --nanopb_out=. ./examples/simple/simple.proto
 
-#cd ./examples/simple
-#make
+cd ./examples/simple
+make
 
 #cd ./examples/cmake_simple
 #protoc --plugin=protoc-gen-nanopb=nanopb/generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
