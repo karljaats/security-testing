@@ -2,12 +2,10 @@
 
 sudo apt-get update
 sudo apt-get install make autoheader autoconf automake libtool curl make g++ gcc unzip pkg-config doxygen scons git bazel
-sudo apt-get install protobuf-compiler python-protobuf
+sudo apt-get install protobuf-compiler python3-protobuf
 sudo apt-get install libprotoc-dev
-#pip install --upgrade protobuf grpcio-tools
-
+pip install --upgrade protobuf grpcio-tools
 pip install --ignore-installed six
-
 sudo pip install protobuf
 
 #PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
