@@ -7,7 +7,9 @@ sudo apt-get install make autoheader autoconf automake libtool curl make g++ gcc
 
 #bazel build
 
-cd ./examples/simple
-ls
+#cd ./examples/simple
+#make
+
+cd ./examples/cmake_simple
+cmake .
 make
-make install
