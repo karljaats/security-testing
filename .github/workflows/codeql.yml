@@ -33,6 +33,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      
+    - name: install python
+      uses: actions/setup-python
+      with:
+        python-version: "2.7"
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
