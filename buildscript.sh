@@ -5,13 +5,14 @@ CXXFLAGS='-std=c++11' make target
 sudo apt-get update
 sudo apt-get install make autoheader autoconf automake libtool curl make g++ gcc unzip pkg-config doxygen scons git bazel
 sudo apt-get install protobuf-compiler python-protobuf
+sudo apt-get install libprotoc-dev
 pip install --upgrade protobuf grpcio-tools
 
-PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
-curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
-sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
-sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
-rm -f $PROTOC_ZIP
+#PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
+#curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
+#sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+#sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+#rm -f $PROTOC_ZIP
 
 #bazel build
 chmod +rwx examples
