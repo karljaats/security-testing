@@ -1,7 +1,5 @@
 #!/bin/bash
 
-CXXFLAGS='-std=c++11' make target
-
 sudo apt-get update
 sudo apt-get install make autoheader autoconf automake libtool curl make g++ gcc unzip pkg-config doxygen scons git bazel
 sudo apt-get install protobuf-compiler python-protobuf
@@ -35,10 +33,9 @@ chmod +rwx generator/protoc-gen-nanopb.bat
 #make install
 #cd ..
 #cd ..
-protoc --plugin=protoc-gen-nanopb=generator/protoc-gen-nanopb --nanopb_out=. ./examples/simple/simple.proto
-generator-bin/protoc --nanopb_out=. ./examples/simple/simple.proto
 
-cd ./examples/simple
+generator-bin/protoc --nanopb_out=. simple.proto
+
 make
 
 #cd ./examples/cmake_simple
