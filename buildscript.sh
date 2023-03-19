@@ -12,5 +12,8 @@ sudo apt-get install protobuf-compiler python-protobuf
 #make
 
 cd ./examples/cmake_simple
+
+protoc --plugin=protoc-gen-nanopb=nanopb/generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
+
 cmake .
 make
