@@ -2,6 +2,8 @@
 
 CXXFLAGS='-std=c++11' make target
 
+sudo apt-get install python
+
 python --version
 python2 --version
 python3 --version
