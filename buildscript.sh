@@ -6,36 +6,34 @@ sudo apt-get update
 sudo apt-get install make autoheader autoconf automake libtool curl make g++ gcc unzip pkg-config doxygen scons git bazel
 sudo apt-get install protobuf-compiler python-protobuf
 sudo apt-get install libprotoc-dev
-pip install --upgrade protobuf grpcio-tools
+#pip install --upgrade protobuf grpcio-tools
 
-protoc --version
-
-PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
-curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
-sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
-sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
-rm -f $PROTOC_ZIP
+#PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
+#curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
+#sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+#sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+#rm -f $PROTOC_ZIP
 
 chmod +rwx /usr/local/bin/protoc
-
-protoc --plugin=protoc-gen-nanopb=generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
-
-#bazel build
 chmod +rwx examples
 chmod +rwx examples/simple
 chmod +rwx examples/simple/Makefile
 chmod +rwx generator
 chmod +rwx generator/protoc
 
+#protoc --plugin=protoc-gen-nanopb=generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
 
-protoc --version
+#protoc --version
 
-cd ./generator/proto
-make
-make install
+#cd ./generator/proto
+#make
+#make install
+#cd ..
+#cd ..
 
-cd ..
-cd ..
+generator-bin/protoc --nanopb_out=. myprotocol.proto
+
+
 cd ./examples/simple
 make
 
