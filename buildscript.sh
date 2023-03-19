@@ -34,7 +34,8 @@ chmod +rwx generator/protoc-gen-nanopb.bat
 #cd ..
 #cd ..
 
-generator-bin/protoc --nanopb_out=. simple.proto
+
+generator-bin/protoc --plugin=protoc-gen-nanopb=generator/protoc-gen-nanopb --nanopb_out=. simple.proto
 
 make
 
