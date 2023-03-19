@@ -33,7 +33,7 @@ chmod +rwx generator/protoc
 #cd ..
 #cd ..
 
-generator-bin/protoc --nanopb_out=. ./examples/simplesimple.proto
+generator-bin/protoc --nanopb_out=. ./examples/simple/simple.proto
 
 cd ./examples/simple
 make
