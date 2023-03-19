@@ -18,7 +18,7 @@ rm -f $PROTOC_ZIP
 
 chmod +rwx /usr/local/bin/protoc
 
-protoc --version
+protoc --plugin=protoc-gen-nanopb=generator/protoc-gen-nanopb --nanopb_out=. myprotocol.proto
 
 #bazel build
 chmod +rwx examples
@@ -26,6 +26,9 @@ chmod +rwx examples/simple
 chmod +rwx examples/simple/Makefile
 chmod +rwx generator
 chmod +rwx generator/protoc
+
+
+protoc --version
 
 cd ./generator/proto
 make
