@@ -3,11 +3,7 @@
 CXXFLAGS='-std=c++11' make target
 
 sudo apt-get update
-sudo apt-get install autoconf automake libtool curl make g++ unzip
+sudo apt-get install make autoheader autoconf automake libtool curl make g++ gcc unzip pkg-config doxygen scons git bazel
 
-./autogen.sh
+bazel build
 
-./configure
-make CXXFLAGS='-std=c++14'
-sudo make install
-sudo ldconfig # refresh shared library cache.
