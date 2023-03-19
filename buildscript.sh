@@ -14,6 +14,12 @@ chmod +rwx examples/simple/Makefile
 chmod +rwx generator
 chmod +rwx generator/protoc
 
+cd ./generator/proto
+make
+make install
+
+cd ..
+cd ..
 cd ./examples/simple
 make
 
