@@ -16,6 +16,8 @@ sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
 sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 rm -f $PROTOC_ZIP
 
+chmod +rwx /usr/local/bin/protoc
+
 protoc --version
 
 #bazel build
