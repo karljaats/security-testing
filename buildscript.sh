@@ -14,7 +14,8 @@ sudo apt-get install libprotoc-dev
 #sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 #rm -f $PROTOC_ZIP
 
-chmod +rwx /usr/local/bin/protoc
+chmod +rwx generator-bin
+chmod +rwx generator-bin/protoc
 chmod +rwx examples
 chmod +rwx examples/simple
 chmod +rwx examples/simple/Makefile
