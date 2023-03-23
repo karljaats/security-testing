@@ -368,7 +368,7 @@ class ScopedAlternateSignalStack {
 
  private:
   using AltStackBuffer = std::array<char, kAltStackSize>;
-  std::unique_ptr<AltStackBuffer> stack_;
+  //std::unique_ptr<AltStackBuffer> stack_;
 };
 } // namespace
 
