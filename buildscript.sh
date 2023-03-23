@@ -2,9 +2,9 @@
 
 sudo apt-get update
 sudo apt-get install autoconf automake libtool curl make g++ unzip
-sudo apt install libssl-dev
+sudo apt-get install libssl-dev
 
 
 ./buildconf
-./configure
+./configure --without-openssl --without-libz
 make
