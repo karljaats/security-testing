@@ -2,7 +2,7 @@
 
 sudo apt-get update
 sudo apt-get install autoconf automake libtool curl make g++ unzip
-sudo apt-get install libctemplate-dev libicu-dev libsasl2-dev libtidy-dev uuid-dev libxml2-dev libglib2.0-dev autoconf automake libtool
+sudo apt-get install libctemplate-dev libicu-dev libsasl2-dev libtidy-dev uuid-dev libxml2-dev libglib2.0-dev autoconf automake libtool libssl-dev
 
 pwd
 

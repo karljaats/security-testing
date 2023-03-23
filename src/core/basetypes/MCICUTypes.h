@@ -10,12 +10,14 @@
 
 #define MAILCORE_MCICUTYPES_H
 
+#include "icu-ucsdet/include/unicode/umachine.h"
+
 #ifdef _MSC_VER
 typedef wchar_t UChar;
-#elif defined(__CHAR16_TYPE__)
-typedef __CHAR16_TYPE__ UChar;
-#else
-typedef uint16_t UChar;
+//#elif defined(__CHAR16_TYPE__)
+//typedef __CHAR16_TYPE__ UChar;
+//#else
+//typedef uint16_t UChar;
 #endif
 
 #endif
