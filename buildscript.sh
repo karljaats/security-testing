@@ -6,4 +6,7 @@ sudo apt-get install autoconf automake libtool curl make g++ unzip libavcodec-de
         libsamplerate-dev libsndfile-dev \
         txt2man doxygen
 
+chmod +rwx ./scripts
+chmod +rwx ./scripts/get_waf.sh
+
 make
