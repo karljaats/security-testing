@@ -34,5 +34,7 @@ make install
 
 cd ..
 
-cmake .
-make -j $(nproc)
+CXXFLAGS='-std=c++14' make target
+
+cmake . 
+make -j $(nproc) CXXFLAGS='-std=c++14'
