@@ -10,7 +10,7 @@
 
 #define MAILCORE_MCICUTYPES_H
 
-/#include "icu-ucsdet/include/unicode/umachine.h"
+#include "icu-ucsdet/include/unicode/umachine.h"
 
 #ifdef _MSC_VER
 typedef wchar_t UChar;
