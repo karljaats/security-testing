@@ -1,13 +1,26 @@
 #!/bin/bash
 
-CXXFLAGS='-std=c++11' make target
-
 sudo apt-get update
-sudo apt-get install autoconf automake libtool curl make g++ unzip
+sudo apt-get install autoconf automake libtool curl make g++ gcc unzip libboost-all-dev
+sudo apt-get install \
+    cmake \
+    libboost-all-dev \
+    libevent-dev \
+    libdouble-conversion-dev \
+    libgoogle-glog-dev \
+    libgflags-dev \
+    libiberty-dev \
+    liblz4-dev \
+    liblzma-dev \
+    libsnappy-dev \
+    zlib1g-dev \
+    binutils-dev \
+    libjemalloc-dev \
+    libssl-dev \
+    pkg-config \
+	libunwind8-dev \
+    libelf-dev \
+    libdwarf-dev
 
-./autogen.sh
-
-./configure
-make CXXFLAGS='-std=c++14'
-sudo make install
-sudo ldconfig # refresh shared library cache.
+cmake .
+make -j $(nproc)
