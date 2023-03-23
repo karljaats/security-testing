@@ -14,6 +14,6 @@ cd libetpan
 make >/dev/null
 sudo make install prefix=/usr >/dev/null
 
-cd ~/mailcore2
+cd /home/runner/work/security-testing/security-testing
 cmake .
 make
