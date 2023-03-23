@@ -352,9 +352,9 @@ class ScopedAlternateSignalStack {
       return;
     }
 
-    stack_ = std::make_unique<AltStackBuffer>();
+    //stack_ = std::make_unique<AltStackBuffer>();
 
-    setAlternateStack(stack_->data(), stack_->size());
+    //setAlternateStack(stack_->data(), stack_->size());
   }
 
   ScopedAlternateSignalStack(ScopedAlternateSignalStack&&) = default;
