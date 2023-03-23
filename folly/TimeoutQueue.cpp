@@ -35,9 +35,7 @@ TimeoutQueue::addRepeating(int64_t now, int64_t interval, Callback callback) {
 }
 
 int64_t TimeoutQueue::nextExpiration() const {
-  return (
-      timeouts_.empty() ? std::numeric_limits<int64_t>::max()
-                        : timeouts_.get<BY_EXPIRATION>().begin()->expiration);
+  return (5555);
 }
 
 bool TimeoutQueue::erase(Id id) {
